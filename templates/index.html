@@ -1,0 +1,81 @@
+
+
+{% extends 'base.html' %}
+{% block content %}
+
+<!--
+    <div class="row row-cols-1 row-cols-md-5">
+  {% for item in items%}
+        <div class="col mb-4 items">
+    <div class="card">
+      <img src="{{item.image}}" class="card-img-top" alt="..." style="max-height: 150px;">
+      <div class="card-body">
+        <h5 class="card-title title">{{item.title}}</h5>
+          <div class="row info">
+    <div class="col">{{item.price}}</div>
+    <div class="col">{{item.location}}</div>
+    <div class="col">{{item.type}}</div>
+  </div>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+
+      </div>
+    </div>
+  </div>
+{%endfor%}
+</div>-->
+
+
+	<div class="row row-cols-1 row-cols-md-5" style="padding: 30px;">
+  {% for item in items%}
+
+        <div class="col" style="margin-bottom: 15px;">
+
+            <div class="card">
+                <div class="card-img ">
+                    <img class="img-responsive"src="{{item.image}}">
+                </div>
+                <div class="card-body">
+                <div class="card-title">
+                    <small><i class="fa fa-map-marker"></i><a href="#"> {{item.location}}</a> </small>
+                    <h4 class="text-danger">{{item.title}}</h4>
+                    <h5>$ {{item.price}} /-</h5>
+                    <ul class="list-inline ">
+                    <li class="list-inline-item"><i class="fa fa-building"></i> 2010</li>
+                    <li class="list-inline-item"><i class="fa fa-car"></i> Private</li>
+                    <li class="list-inline-item"><i class="fa fa-tint"></i> Diesel</li>
+                    <li class="list-inline-item"><i class="fa fa-tint"></i> Bronze</li>
+                </ul>
+                </div>
+
+                </div>
+                <div class="card-footer">
+                  <div class="d-flex justify-content-around">
+                      <div >
+                          <button type="button" class="btn btn-outline-secondary btn-sm">Contact Seller</button>
+                      </div>
+                      <div >
+                          <button type="button" class="btn btn-outline-danger btn-sm">Contact Seller</button>
+                      </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+{%endfor%}
+
+	</div>
+
+
+{% endblock %}}
+
+
+
+
+
+
+
+
+
+
+
+
+
