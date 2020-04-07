@@ -1,8 +1,8 @@
 from django import forms
-from .models import SignUpModel
+from .models import UserModel
 
 
 class MyForm(forms.ModelForm):
     class Meta:
-        model = SignUpModel
+        model = UserModel
         fields = "__all__"

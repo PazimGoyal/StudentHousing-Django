@@ -5,4 +5,5 @@ from .models import HouseListings
 class SaveData(forms.ModelForm):
     class Meta:
         model = HouseListings
-        fields = "__all__"
+        exclude = ['created_date']
+
