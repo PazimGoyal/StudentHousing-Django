@@ -1,0 +1,21 @@
+body{
+	border-radius: 8px;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	 margin: auto;
+
+}
+.card{margin: auto;}
+     img{width:100%;}
+.card:hover {box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);}
+.card-block {padding:15px;}
+.card-img {border-radius: 0px 0px 0 0;max-height:180px;overflow: hidden;}
+
+
+.item{
+	padding:5px 10px;
+	border: thin solid #4e555b;
+	margin: 0px;
+
+}
+.itemall{
+}

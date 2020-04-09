@@ -1,0 +1,277 @@
+* {
+    max-width: 100%;
+    margin: 0px;
+    padding: 0px;
+
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Vollkorn:wght@600&display=swap');
+textarea:hover,
+textarea:active,
+textarea:focus,
+button:focus,
+button:active,
+button:hover,
+label:focus,
+.btn:active,
+.btn.active {
+    outline: 0px !important;
+    -webkit-appearance: none;
+    box-shadow: none !important;
+}
+
+body {
+    background: #e7e7e7;
+    border-radius: 8px;
+    font-family: 'Vollkorn', serif;
+}
+
+
+.page-footer {
+    background-color: #b71921;
+    color: #fff;
+    text-decoration: none;
+}
+
+/*--------------------------------------------*/
+.main-nav {
+    background-color: #b71921;
+    font-size: larger;
+}
+
+
+.navbar-brand {
+}
+
+/* ----------------------------------------------*/
+.search_bar {
+    border-right: none;
+}
+
+.advanceSearch {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.input-form-txt, .input-form-dpd {
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, .5);
+    border: none;
+}
+
+.input-form-btn {
+    background-color: #b71921;
+    width: 100%;
+    height: 100%;
+    color: white;
+    border: none;
+    border-right: 1px solid #fff;
+}
+
+
+.input-form-cb {
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    padding-left: 40px;
+    background-color: rgba(255, 255, 255, .5);
+    border: none;
+}
+
+
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+    background-color: rgba(183, 25, 33, 1) !important;
+}
+
+.custom-checkbox .custom-control-input:checked:focus ~ .custom-control-label::before {
+    box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(183, 25, 33, 0.25)
+}
+
+.custom-checkbox .custom-control-input:focus ~ .custom-control-label::before {
+    box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(0, 0, 0, 0.25)
+}
+
+.custom-checkbox .custom-control-input:active ~ .custom-control-label::before {
+    background-color: rgba(183, 25, 33, 0.6);
+}
+
+#advanceSearch {
+    border-bottom: 1px solid #b71921;
+
+
+}
+
+.material-icons {
+    font-size: 40px;
+}
+
+.navbar .fas {
+    padding: 0px 10px;
+    color: #b71921;
+
+}
+
+/* ----------------------------------------------*/
+
+.card {
+    margin: auto;
+    transition: box-shadow .5s;
+}
+
+.card img {
+    width: 100%;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 1);
+}
+
+.card-block {
+    padding: 15px;
+}
+
+.card-img {
+    border-radius: 0px 0px 0 0;
+    max-height: 180px;
+    overflow: hidden;
+}
+
+
+.title {
+    font-size: xx-large;
+    box-shadow: 2px 2px 2px #000;
+    background: #fff;
+    padding-left: 25px;
+    margin-bottom: 10px;
+
+}
+
+.item {
+    padding: 5px 10px;
+    margin: 0px;
+    text-align: justify-all;
+    cursor: pointer;
+    transition: color 1s;
+}
+
+.item:hover {
+
+    color: #b71921;
+}
+
+.itemall {
+    background: #fff;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    grid-gap: 5px;
+    margin-top: 10px;
+    overflow: hidden;
+    box-shadow: 2px 2px 2px 2px #4e555b;
+}
+
+.img-thumb {
+
+    filter: drop-shadow(2px 2px 5px #000);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.discr {
+    min-height: 300px;
+    max-height: 1000px;
+    overflow: hidden;
+    box-shadow: 2px 2px 2px 2px #4e555b;
+    background: #fff;
+    margin: 10px 0px;
+    padding: 10px;
+}
+
+.text-top {
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+}
+
+.text-top .tot {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel {
+    border: 5px ridge #fff;
+}
+
+.price_address {
+    display: flex;
+    justify-content: space-around;
+}
+
+.info_item {
+    font-size: .7em;
+}
+
+/*----------------------------------------------------------------------------------USER*/
+
+.center-card-design-register {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: #fff;
+    padding: 50px;
+    justify-content: center;
+    align-items: center;
+}
+
+.center-card-design-register .head {
+    text-align: center;
+    font-size: xx-large;
+}
+.center-card-design-register
+input {
+    border:none;
+    border-bottom: 1px solid rgba(183, 25, 33, 1);
+    padding: 10px 20px;
+    width: 100%;
+    margin: 10px;
+    color: #4e555b;
+    font-size: larger;
+}
+
+
+.left_login{
+    min-height: 80vh;
+    width: 100%;
+    background:url("../img/red-built-structure-against-sky-247532.jpg") center no-repeat;
+    background-size: cover;
+}
+
+.left_register{
+    min-height: 80vh;
+    width: 100%;
+    background:url("../img/architecture-bungalow-clouds-daylight-451576.jpg") center no-repeat;
+    background-size: cover;
+
+}
+.center-card-design-register input[type="submit"] {
+    width: 100%;
+    text-align: center;
+    background: linear-gradient(to top right, #b71921 40% , #fda085 80%);
+    border-radius: 40px;
+    padding: 10px;
+    color: #fff;
+
+}
+
+.headingIndex {
+    width: 100%;
+    text-align: center;
+    text-shadow: 1px 1px 1px #fff, 2px 2px 2px #000;
+}
+

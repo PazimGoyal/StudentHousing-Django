@@ -1,8 +1,9 @@
 from django import forms
+
 from .models import UserModel
 
 
-class MyForm(forms.ModelForm):
+class myForm(forms.ModelForm):
     class Meta:
         model = UserModel
-        fields = "__all__"
+        exclude = ['user']

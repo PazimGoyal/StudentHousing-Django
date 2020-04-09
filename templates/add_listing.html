@@ -1,12 +1,21 @@
-
 {% extends 'base.html' %}
+{% block title %} | New Listing{% endblock%}
+
 {% block content %}
 
 
 <form method="POST" class="myform" enctype="multipart/form-data"> {% csrf_token%}
 
-  {{ form.as_p }}
-  <input type="submit" value="Submit">
+    <div class="container center-card-design-register">
+        <div class="head">Post Ad.</div>
+        {{ form.as_p }}
+        <input type="submit" value="Submit" class="submit">
+
+
+    </div>
+
+
 </form>
+
 
 {%endblock%}

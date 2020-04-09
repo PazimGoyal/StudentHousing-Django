@@ -1,35 +1,34 @@
+body{
 
-.form-style-5{
-	max-width: 500px;
-	padding: 10px 20px;
-	background: #f4f7f8;
-	margin: 10px auto;
-	padding: 20px;
-	background: #f4f7f8;
+	background: #0c5460;
 	border-radius: 8px;
 	font-family: Georgia, "Times New Roman", Times, serif;
+	 margin: auto;
+
 }
-.form-style-5 fieldset{
+
+
+fieldset{
 	border: none;
 }
-.form-style-5 legend {
+legend {
 	font-size: 1.4em;
 	margin-bottom: 10px;
 }
-.form-style-5 label {
+label {
 	display: block;
 	margin-bottom: 8px;
 }
-.form-style-5 input[type="text"],
-.form-style-5 input[type="date"],
-.form-style-5 input[type="datetime"],
-.form-style-5 input[type="email"],
-.form-style-5 input[type="number"],
-.form-style-5 input[type="search"],
-.form-style-5 input[type="time"],
-.form-style-5 input[type="url"],
-.form-style-5 textarea,
-.form-style-5 select {
+ input[type="text"],
+ input[type="date"],
+ input[type="datetime"],
+ input[type="email"],
+ input[type="number"],
+ input[type="search"],
+ input[type="time"],
+ input[type="url"],
+ textarea,
+ select {
 	font-family: Georgia, "Times New Roman", Times, serif;
 	background: rgba(255,255,255,.1);
 	border: none;
@@ -48,23 +47,23 @@
 	box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
 	margin-bottom: 30px;
 }
-.form-style-5 input[type="text"]:focus,
-.form-style-5 input[type="date"]:focus,
-.form-style-5 input[type="datetime"]:focus,
-.form-style-5 input[type="email"]:focus,
-.form-style-5 input[type="number"]:focus,
-.form-style-5 input[type="search"]:focus,
-.form-style-5 input[type="time"]:focus,
-.form-style-5 input[type="url"]:focus,
-.form-style-5 textarea:focus,
-.form-style-5 select:focus{
+ input[type="text"]:focus,
+ input[type="date"]:focus,
+ input[type="datetime"]:focus,
+ input[type="email"]:focus,
+ input[type="number"]:focus,
+ input[type="search"]:focus,
+ input[type="time"]:focus,
+ input[type="url"]:focus,
+ textarea:focus,
+ select:focus{
 	background: #d2d9dd;
 }
-.form-style-5 select{
+ select{
 	-webkit-appearance: menulist-button;
 	height:35px;
 }
-.form-style-5 .number {
+ .number {
 	background: #1abc9c;
 	color: #fff;
 	height: 30px;
@@ -78,8 +77,8 @@
 	border-radius: 15px 15px 15px 0px;
 }
 
-.form-style-5 input[type="submit"],
-.form-style-5 input[type="button"]
+ input[type="submit"],
+ input[type="button"]
 {
 	position: relative;
 	display: block;
@@ -95,8 +94,26 @@
 	border-width: 1px 1px 3px;
 	margin-bottom: 10px;
 }
-.form-style-5 input[type="submit"]:hover,
-.form-style-5 input[type="button"]:hover
+ input[type="submit"]:hover,
+ input[type="button"]:hover
 {
 	background: #109177;
 }
+      .items .disc{
+
+    max-height: 100px;
+    overflow: hidden;
+}
+
+.items .info{
+border: 1px solid #e7e7e7;
+}
+     .items col{
+         overflow: hidden;
+     }
+.card{margin: auto;}
+     img{width:100%;}
+.card:hover {box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);}
+.card-block {padding:15px;}
+.card-img {border-radius: 0px 0px 0 0;max-height:180px;overflow: hidden;}
+

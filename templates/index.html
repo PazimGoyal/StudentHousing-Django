@@ -1,106 +1,176 @@
-
-
 {% extends 'base.html' %}
+
+{% block title %} | Welcome{% endblock%}
+
+
 {% block content %}
 
-<!--
-    <div class="row row-cols-1 row-cols-md-5">
-  {% for item in items%}
-        <div class="col mb-4 items">
-    <div class="card">
-      <img src="{{item.image}}" class="card-img-top" alt="..." style="max-height: 150px;">
-      <div class="card-body">
-        <h5 class="card-title title">{{item.title}}</h5>
-          <div class="row info">
-    <div class="col">{{item.price}}</div>
-    <div class="col">{{item.location}}</div>
-    <div class="col">{{item.type}}</div>
-  </div>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+<div class="container">
+<div style="margin-top: 20px"></div>
+    <form action="{%url 'search'%}">
+        <div class="row no-gutters search_bar">
+            <div class="col-8">
+                <input type="text" class="input-form-txt" name="keywords" placeholder="Keywords ">
+            </div>
+            <div class="col-3">
+                <button class="input-form-btn" type="submit"><i class="material-icons">search</i></button>
+            </div>
 
-      </div>
-    </div>
-  </div>
-{%endfor%}
-</div>-->
+            <div class="col-1">
+                <button class="input-form-btn" type="button" data-toggle="collapse" data-target="#advanceSearch"
+                        aria-expanded="false" aria-controls="collapseExample"><i class="material-icons">keyboard_arrow_down</i>
+                </button>
+            </div>
+
+        </div>
+
+        <div class="collapse" id="advanceSearch">
+            <div class="row advanceSearch">
+                <div class="col-3">
+                    <select class="input-form-dpd" name="city">
+                        <option value="c">City</option>
+                        <option value="MTL">Montreal</option>
+                        <option value="TOR">Toronto</option>
+                    </select>
+                </div>
+                <div class="col-3">
+                    <select class="input-form-dpd" name="sub-city">
+                        <option value="m">Area</option>
+                        <option>Montreal</option>
+                        <option>LaSalle</option>
+                        <option>Lachine</option>
+                        <option>La Plateau-Mount-Royal</option>
+                        <option>Montreal-Nord</option>
+                        <option>Toronto</option>
+                    </select>
+                </div>
+
+                <div class="col-3">
+                    <input type="number" class="input-form-txt" placeholder="Max-Price" name="price">
+                </div>
+                <div class="col-3">
+                    <select class="input-form-dpd" name="space">
+                        <option value="SQ">Space Requirement</option>
+                        <option value="PB">Private Bedroom</option>
+                        <option value="SB">Shared Bedroom</option>
+                        <option value="EP">Whole Apartment/House</option>
+                    </select></div>
+
+            </div>
 
 
+            <div class="row advanceSearch">
+                <div class="col-3">
+                    <input type="text" class="input-form-txt" placeholder="size">
+                </div>
+                <div class="col-3">
+                    <select class="input-form-dpd" name="furniture">
+                        <option value="FQ">Furniture</option>
+                        <option value="FF">Fully Furnished</option>
+                        <option value="SF">Semi Furnished</option>
+                        <option value="NF">Not Furnished</option>
+                    </select></div>
+
+                <div class="col-3">
+                    <div class=" custom-checkbox input-form-cb">
+                        <input type="checkbox" class="custom-control-input" id="customCheck">
+                        <label class="custom-control-label" for="customCheck">Parking</label>
+                    </div>
+                </div>
+
+                <div class="col-3">
+                    <div class=" custom-checkbox input-form-cb">
+                        <input type="checkbox" class="custom-control-input" id="customCheck2">
+                        <label class="custom-control-label" for="customCheck2">PETS</label>
+                    </div>
+                </div>
 
 
-	<div class="row row-cols-1 row-cols-md-5" style="padding: 30px;">
-  {% for item in items%}
+    </form>
+</div>
+
+</div>
+</div>
+<div class="" style="padding: 20px">
+    <h2 class="headingIndex">New Listings</h2>
+    <div class="row row-cols-lg-4 row-cols-md-3 row-cols-1 row-cols-xl-5" style="padding: 30px;"> {% for item in items%}
 
         <div class="col" style="margin-bottom: 15px;">
 
             <div class="card">
                 <div class="card-img ">
-                    <img class="img-responsive"src="{{item.image1.url}}">
+                    <img class="img-responsive" src="{{item.image1.url}}">
                 </div>
                 <div class="card-body">
-                <div class="card-title">
-                    <small><i class="fa fa-map-marker"></i><a href="#"> {{item.city}}</a> </small>
-                    <h4 class="text-danger">{{item.title}}</h4>
-                    <h5>$ {{item.price}} /-</h5>
-                    <ul class="list-inline ">
-                    <li class="list-inline-item"><i class="fa fa-building"></i> {{item.building_type}}</li>
-                    <li class="list-inline-item"><i class="fa fa-home"></i> {{item.space_given}}</li>
-                    <li class="list-inline-item"><i class="fa  fa-car"></i> {{item.garage}}</li>
-                </ul>
-                </div>
+                    <div class="card-title">
+                        <small><i class="fa fa-map-marker"></i><a href="#"> {{item.city}} / {{item.zipCode|lower}}</a>
+                        </small>
+                        <h4 class="text-danger">{{item.title}}</h4>
+                        <h5>$ {{item.price}} /-</h5>
+                        <div class="smallerItems row row-cols-2">
+                            <div class="col info_item"><i class="fa fa-building"></i>
+                                {{item.building_type|cut:"BUILDING"}}
+                            </div>
+                            <div class="col info_item"><i class="fa fa-home"></i> {{item.space_given|cut:"BEDROOM"}}
+                            </div>
+
+                            <div class="col info_item"><i class="fa  fa-car"></i> {{item.garage|default:'NO'}}</div>
+                            <div class="col info_item"><i class="fa  fa-wifi "></i> {{item.wifiIncluded|default:'NO' }}
+                            </div>
+
+                        </div>
+                    </div>
 
                 </div>
                 <div class="card-footer">
-                  <div class="d-flex justify-content-around">
-                      <div >
-                          <button type="button" class="btn btn-outline-secondary btn-sm" href="listing/">Contact Seller</button>
-                      </div>
-                      <div >
-                          <button type="button" class="btn btn-outline-danger btn-sm"  href="listings/listing">OPEN</button>
-                      </div>
-                  </div>
+                    <div class="d-flex justify-content-around">
+                        <div>
+                            <a type="button" class="btn btn-outline-danger btn-sm" href="{{item.id}}">Read More</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-{%endfor%}
+        {%endfor%}
 
-	</div>
+    </div>
+    <nav aria-label="Page navigation example">
+        {% if items.has_other_pages%}
+        <ul class="pagination justify-content-center">
 
-<nav aria-label="Page navigation example">
-    {% if items.has_other_pages%}
-      <ul class="pagination justify-content-center">
-
- {%if items.has_previous%}
-        <li class="page-item">
-             <a class="page-link" href="?page={{items.previous_page_number}}" tabindex="-1">Previous</a>
-        </li>
- {% else%}
-          <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1">Previous</a>
-          </li>
-          {% endif%}
+            {%if items.has_previous%}
+            <li class="page-item">
+                <a class="page-link" href="?page={{items.previous_page_number}}" tabindex="-1">Previous</a>
+            </li>
+            {% else%}
+            <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1">Previous</a>
+            </li>
+            {% endif%}
 
 
             {% for i in items.paginator.page_range%}
-                {% if items.number == i %}
-                   <li class="page-item active"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
-                {% else%}
-                    <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
-                {% endif%}
+            {% if items.number == i %}
+            <li class="page-item active"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+            {% else%}
+            <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+            {% endif%}
             {% endfor%}
 
 
- {%if items.has_next%}
-        <li class="page-item">
-          <a class="page-link" href="?page={{items.next_page_number}}">Next</a>
-        </li>
-          {% else %}
-                  <li class="page-item disabled">
-          <a class="page-link" href="">Next</a>
-        </li>
-{%endif%}
-      </ul>
-    {% endif%}
-</nav>
+            {%if items.has_next%}
+            <li class="page-item">
+                <a class="page-link" href="?page={{items.next_page_number}}">Next</a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" href="">Next</a>
+            </li>
+            {%endif%}
+        </ul>
+        {% endif%}
+    </nav>
+</div>
 {% endblock %}}
 
 
