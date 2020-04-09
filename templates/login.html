@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block title %} | User Login{% endblock%}
+{% block content %}
+            <div class="row no-gutters loginPage">
+                <div class="col-lg-8 left_login"></div>
+                <div class="col-lg-4">
+
+<form method="post">{% csrf_token %}
+    <div class="center-card-design-register">
+        <div class="head">LOG IN</div>
+        {% if messages %}
+        {% for message in messages %}
+        {% if message.tags %}
+        <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+            {%else%}
+            <div class="alert alert-alert alert-dismissible fade show" role="alert">
+                {% endif %}
+                <strong>{{ message }}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {% endfor %}
+            {% endif %}
+
+                <form action="{% url 'login'%}" method="POST"> {% csrf_token %}</form>
+
+            <input type="text" name="username" placeholder="UserName" required value="">
+            <input type="text" name="password" placeholder="Password" required>
+            <input type="submit" value="Submit" class="submit">
+            <a href="{% url 'register'%}">Forgot Password</a>
+            <a href="{% url 'register'%}">Dont Have an Account ?</a>
+
+        </div>
+</form>
+</div></div>
+
+
+
+            </div>
+
+
+
+<!--            <form action="{% url 'login'%}" method="POST"> {% csrf_token %}</form>
+
+        <div class="inputfield">
+       <i class="fas fa-user"></i>
+            <input type="text" name="username" placeholder="UserName" required value="">
+        </div>
+        <div class="inputfield">
+       <i class="fas fa-key"></i>
+            <input type="text" name="password" placeholder="Password" required>
+        </div>
+            <input type="submit" value="Submit" class="submit">
+
+        </div>
+</form>-->
+{%endblock%}

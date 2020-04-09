@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block title %} | User Dashboard{% endblock%}
+
+{% block content %}
+{% load humanize%}
+<div class="container">
+    <div class="head">USER DASHBOARD</div>
+
+    {% if messages %}
+    {% for message in messages %}
+    {% if message.tags %}
+    <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+        {%else%}
+        <div class="alert alert-alert alert-dismissible fade show" role="alert">
+            {% endif %}
+            <strong>{{ message }}</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+
+
+</div>
+
+<div class="row dashboard">
+    <div class="col-4 left_pannel"></div>
+
+    <div class="col-6 center_pannel">
+        {% if items%}
+        {% for item in items%}
+
+        <!-- card Code -->
+
+        {%endfor%}
+        {%else%}
+        <h2>No results found for search parameters</h2>
+        {%endif%}
+
+        <nav aria-label="Page navigation example">
+            {% if items.has_other_pages%}
+            <ul class="pagination justify-content-center">
+
+                {%if items.has_previous%}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{items.previous_page_number}}" tabindex="-1">Previous</a>
+                </li>
+                {% else%}
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1">Previous</a>
+                </li>
+                {% endif%}
+
+
+                {% for i in items.paginator.page_range%}
+                {% if items.number == i %}
+                <li class="page-item active"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+                {% else%}
+                <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+                {% endif%}
+                {% endfor%}
+
+
+                {%if items.has_next%}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{items.next_page_number}}">Next</a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="">Next</a>
+                </li>
+                {%endif%}
+            </ul>
+            {% endif%}
+        </nav>
+
+    </div>
+
+    <div class="col-2 right_pannel"></div>
+</div>
+{%endblock%}

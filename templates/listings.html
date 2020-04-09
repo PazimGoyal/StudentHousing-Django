@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block title %} | Listings{% endblock%}
+
+{% load humanize%}
+{% block content %}
+
+<div class="row row-cols-lg-4 row-cols-md-3 row-cols-1 row-cols-xl-5" style="padding: 30px;">
+
+    {% if items%}
+    {% for item in items%}
+
+    <div class="col" style="margin-bottom: 15px;">
+
+        <div class="card">
+            <div class="card-img ">
+                <img class="img-responsive" src="{{item.image1.url}}">
+            </div>
+            <div class="card-body">
+                <div class="card-title">
+                    <small><i class="fa fa-map-marker"></i><a href="#"> {{item.city}} / {{item.zipCode|lower}}</a>
+                    </small>
+                    <h4 class="text-danger">{{item.title}}</h4>
+                    <h5>$ {{item.price|intword}} /-</h5>
+                    <div class="smallerItems row row-cols-2">
+                        <div class="col info_item"><i class="fa fa-building"></i> {{item.building_type|cut:"BUILDING"}}
+                        </div>
+                        <div class="col info_item"><i class="fa fa-home"></i> {{item.space_given|cut:"BEDROOM"}}</div>
+
+                        <div class="col info_item"><i class="fa  fa-car"></i> {{item.garage|default:'NO'}}</div>
+                        <div class="col info_item"><i class="fa  fa-wifi "></i> {{item.wifiIncluded|default:'NO' }}
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="card-footer">
+                <div class="d-flex justify-content-around">
+                    <div>
+                        <a type="button" class="btn btn-outline-danger btn-sm" href="{{item.id}}">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {%endfor%}
+    {%else%}
+    <h2>No results found for search parameters</h2>
+    {%endif%}
+</div>
+<nav aria-label="Page navigation example">
+    {% if items.has_other_pages%}
+    <ul class="pagination justify-content-center">
+
+        {%if items.has_previous%}
+        <li class="page-item">
+            <a class="page-link" href="?page={{items.previous_page_number}}" tabindex="-1">Previous</a>
+        </li>
+        {% else%}
+        <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1">Previous</a>
+        </li>
+        {% endif%}
+
+
+        {% for i in items.paginator.page_range%}
+        {% if items.number == i %}
+        <li class="page-item active"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+        {% else%}
+        <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+        {% endif%}
+        {% endfor%}
+
+
+        {%if items.has_next%}
+        <li class="page-item">
+            <a class="page-link" href="?page={{items.next_page_number}}">Next</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" href="">Next</a>
+        </li>
+        {%endif%}
+    </ul>
+    {% endif%}
+</nav>
+{% endblock %}}
