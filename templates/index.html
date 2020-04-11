@@ -4,7 +4,8 @@
 {% load static%}
 {%load humanize%}
 {% block content %}
-<div class="indexMain">
+<div class="indexMain" style="position: relative;">
+    <div class="shadow"></div>
     <div class="container search_bar_full">
 
         <form action="{%url 'listings'%}">
@@ -18,7 +19,7 @@
 
                 <div class="col-2">
                     <button class="input-form-btn adv" type="button" data-toggle="collapse" data-target="#advanceSearch"
-                            aria-expanded="false" aria-controls="collapseExample"><i class="material-icons">keyboard_arrow_down</i>
+                            aria-expanded="false" aria-controls="collapseExample"><i class="material-icons  js-rotate-if-collapsed">keyboard_arrow_down</i>
                     </button>
                 </div>
             </div>
@@ -91,18 +92,20 @@
 
 <div id="page4" class="row">
     <div class="col-lg-4">
-      <div class="x">
-        <div class="img1 img"></div>
+      <div class="x x1">
+          <div class="innertxt">Shared Bedrooms</div>
       </div>
     </div>
     <div class="col-lg-4">
-      <div class="x">
-        <div class="img2 img"></div>
+      <div class="x x2">
+          <div class="innertxt">Private Bedrooms</div>
+
       </div>
     </div>
     <div class="col-lg-4">
-      <div class="x">
-        <div class="img3 img"></div>
+      <div class="x x3">
+          <div class="innertxt">Shared Bedrooms</div>
+
       </div>
     </div>
   </center>

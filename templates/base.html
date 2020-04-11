@@ -13,7 +13,7 @@
 
 <body>
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark main-nav">
-    <a class="navbar-brand" href="/"><img src="{% static 'img/logo.png' %}" height="50"></a>
+    <a class="navbar-brand" href="/">Student<img src="{% static 'img/logo.png' %}" height="50">Housing</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -22,17 +22,17 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link {% ifequal request.path '/videos/'%} active {% endifequal%}" href="/listings">Listings</a>
+                <a class="nav-link {% ifequal request.path '/listings/'%} active {% endifequal%}" href="/listings">Listings</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/addListing">Post for Free</a>
+                <a class="nav-link  {% ifequal request.path '/addListing/'%} active {% endifequal%}"          href="/addListing">Post for Free</a>
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
            <i class="fas fa-heart"></i> </li>
 
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown active">
                 <a class="nav-link account" data-toggle="dropdown" id="navbarDropdown">
                     <i class="material-icons">account_circle</i><i class="material-icons">
                     keyboard_arrow_down

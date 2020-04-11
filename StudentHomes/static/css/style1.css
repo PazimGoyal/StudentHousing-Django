@@ -26,6 +26,23 @@ body {
     padding-top: 75px;
 }
 
+
+.nav-link {
+    transition: border 1s;
+}
+
+.nav-link:hover {
+    border-top: 1px double #fff;
+}
+
+.nav-link:active {
+    text-shadow: 2px 2px 2px #000;
+}
+
+.nav-link.active {
+    border-bottom: 1px solid #fff;
+}
+
 .row {
     margin-left: 0px;
     margin-right: 0px;
@@ -85,7 +102,7 @@ body {
 /* ----------------INDEX------------------------------*/
 
 .indexMain {
-    background: url("../img/aerial-view-of-buildings-2889701.jpg") top;
+    background: url("../img/sky-sunset-clouds-bright-36464.jpg") top;
     /*
     background-image: linear-gradient(to top, #e7e7e7 0%, #b71921 100%);
     */
@@ -94,6 +111,14 @@ body {
     width: 100%;
     height: auto;
     padding: 100px 0px 100px 0px;
+}
+
+.shadow{
+    margin-top: -100px;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+/*    background-color: rgba(0,0,0,.5);*/
 }
 
 .homepage {
@@ -191,7 +216,6 @@ body {
 /* ------------------LISTING----------------------------*/
 
 
-
 .card {
     margin: auto;
     transition: box-shadow .5s;
@@ -216,19 +240,46 @@ body {
 }
 
 .filter-listing {
-    background: #4e555b;
+    background: #b71921;
     padding: 20px;
 
 }
 
+.filter-options {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
 
-.filter-listing input,select {
+.filter-options .filter-option1 {
+    background-color: rgba(255, 255, 255, .7);
+    border-radius: 5px;
+    padding: 40px;
+}
+
+
+.filter-listing input, .filter-listing select, .listing-filter-b button {
+    margin-top: 10px;
     width: 100%;
     padding: 10px;
     background-color: rgba(255, 255, 255, .7);
     border: none;
+    border-radius: 10px;
+
+
 }
 
+.listing-filter-cb {
+    width: 100%;
+    border-radius: 10px;
+
+    padding: 10px;
+    padding-left: 40px;
+    background-color: rgba(255, 255, 255, .7);
+    margin-top: 10px;
+    border: none;
+}
 
 
 /*------------------SINGLE LISTING--------------------------*/
@@ -527,8 +578,10 @@ input {
 
 
 #page4 {
-    background: #ececec;
+    margin-top: 30px;
 }
+
+/*
 
 .img {
     width: auto;
@@ -538,7 +591,6 @@ input {
     transition: background ease 1s;
 }
 
-/*
 .img1 {
 	background:url(../img/logo-2582748_960_720.png)  center no-repeat;
 background-size:contain;
@@ -550,6 +602,7 @@ background-size:contain;
 	shadow: 5px 5px 5px #000;
 	background-size:contain;
 }
+
 .img3 {
 	shadow: 5px 5px 5px #000;
 	background: url(../img/andr3.png) center no-repeat;
@@ -557,12 +610,12 @@ background-size:contain;
 
 }
 
-*/
+ */
 
 .x {
     margin: 15px;
     border-radius: 10px;
-    background: #fff;
+
     box-shadow: -3px 3px 5px #000;
     min-height: 300px;
     padding-top: 10px;
@@ -570,10 +623,62 @@ background-size:contain;
     transition: background 2s, transform 1s;
 }
 
+.x.x1 {
+    background: url("../img/hotel-room-beds-twin.jpg") center no-repeat;
+    background-size: cover;
+}
+
+.x.x2 {
+    background: url("../img/red-bed-room-interior-wallpaper-preview.jpg") center no-repeat;
+    background-size: cover;
+}
+
+.x.x3 {
+    background: url("../img/photo-of-bedroom-1454806.jpg") center no-repeat;
+    background-size: cover;
+}
+
 .x:hover {
 
     transform: scale(.9, .9);
+    filter: grayscale(10%);
+
 }
+
+
+.x {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+.x .innertxt {
+
+    font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+    font-size: x-large;
+    border: 2px solid #b71921;
+    transition: transform 1s, background-color 1s,color 1s, text-shadow 1s, border 1s, border-radious 1s;
+    padding: 10px;
+    border-radius: 10px;
+    transform: translateY(150px);
+    background-color: rgba(255,255,255,.7);
+    cursor: pointer;
+}
+
+.x:hover .innertxt {
+    transform: translateY(50px);
+    transform: scale(1.5);
+    background-color: rgba(0,0,0,.3);
+    color: #fff;
+    text-shadow: 1px 1px 10px #000;
+    border: none;
+    border-radius: 0px;
+}
+
+
+
 
 /*.x:hover >.img1 {
 	background: url(../img/logo-2582748_960_7202.png)  center no-repeat;
@@ -592,3 +697,20 @@ background-size:contain;
 */
 
 /*---------------------------------------------------page5,6-----------------------------------------------*/
+[data-toggle="collapse"][aria-expanded="true"] > .js-rotate-if-collapsed {
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+
+.pagination .page-link {
+    color: #b71921;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #b71921;
+    color: #fff;
+}
