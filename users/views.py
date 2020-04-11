@@ -1,9 +1,10 @@
 from django.contrib import messages, auth
 from django.contrib.auth import logout
 from django.contrib.auth.models import User
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
 from listings.models import HouseListings
+from .forms import myForm
 from .models import UserModel
 
 
@@ -48,14 +49,19 @@ def logout_view(request):
 
 
 def dashboard(request):
-    myobject = HouseListings.objects.filter(user=request.user)
-    return render(request, 'dashboard.html', {'items': myobject})
+    if request.user.is_authenticated:
+        myobject = HouseListings.objects.order_by('-created_date').filter(user=request.user)
+        myobject2 = get_object_or_404(UserModel,user=request.user)
+        return render(request, 'dashboard.html', {'items': myobject, 'userinfo': myobject2})
+    else:
+        messages.info(request, "You need to login First")
+        return redirect('login')
 
 
 def register(request):
     if request.method == 'POST':
         form = User(request.POST)
-        form2 = UserModel(request.POST, request.FILES)
+        form2 = myForm(request.POST, request.FILES)
         first_name = request.POST['first_name']
         last_name = request.POST['last_name']
         email = request.POST['email']
@@ -63,6 +69,7 @@ def register(request):
         phone = request.POST['phone']
         password = request.POST['password']
         rpassword = request.POST['rpassword']
+
         if password == rpassword:
             if User.objects.filter(username=username).exists():
                 messages.error(request, "User Already Exist with thaat user name")
@@ -73,12 +80,14 @@ def register(request):
                     user = User.objects.create_user(username=username, email=email, password=password,
                                                     first_name=first_name, last_name=last_name)
                     user.save()
-                    messages.success(request, "Account Successfully Created")
+                    if form2.is_valid():
+                        object_my = form2.save(commit=False)
+                        object_my.user = user
+                        object_my.save()
                     return redirect("login")
         else:
             messages.error(request, "Passwords Do Not Match")
     else:
         form = User()
-        form2 = UserModel()
-
+        form2 = myForm()
     return render(request, 'register.html', {'form': form, 'form2': form2})

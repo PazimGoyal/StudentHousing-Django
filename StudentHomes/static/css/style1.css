@@ -22,16 +22,59 @@ label:focus,
 
 body {
     background: #e7e7e7;
-    border-radius: 8px;
     font-family: 'Vollkorn', serif;
+    padding-top: 75px;
 }
 
+.row {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.top-footer {
+    padding: 40px;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+.top-footer .footer-logo {
+    padding: 20px;
+    max-width: fit-content;
+    border: 1px solid #b71921;
+    color: #b71921;
+    box-shadow: 1px 1px 10px 2px #000;
+    border-radius: 50%;
+    margin: auto;
+    transition: transform 1s;
+}
+
+.top-footer .footer-logo:hover {
+    transform: scale(1.2);
+}
+
+.bottom-footer {
+    text-align: center;
+    border-top: 1px solid #fff;
+    padding: 10px;
+}
+
+.top-footer {
+    text-align: center;
+}
+
+.top-footer .footer-text-title {
+    padding: 10px;
+    font-weight: bold;
+    font-size: large;
+}
 
 .page-footer {
-    background-color: #b71921;
+    background-color: #1d2124;
     color: #fff;
     text-decoration: none;
 }
+
 
 /*--------------------------------------------*/
 .main-nav {
@@ -39,13 +82,31 @@ body {
     font-size: larger;
 }
 
+/* ----------------INDEX------------------------------*/
 
-.navbar-brand {
+.indexMain {
+    background: url("../img/aerial-view-of-buildings-2889701.jpg") top;
+    /*
+    background-image: linear-gradient(to top, #e7e7e7 0%, #b71921 100%);
+    */
+
+    background-size: cover;
+    width: 100%;
+    height: auto;
+    padding: 100px 0px 100px 0px;
 }
 
-/* ----------------------------------------------*/
+.homepage {
+    height: 50vh;
+}
+
+.indexMain .search_bar_full {
+    filter: blur(0px);
+}
+
 .search_bar {
     border-right: none;
+
 }
 
 .advanceSearch {
@@ -55,25 +116,25 @@ body {
 
 .input-form-txt, .input-form-dpd {
     width: 100%;
-    height: 100%;
     padding: 10px;
-    background-color: rgba(255, 255, 255, .5);
+    background-color: rgba(255, 255, 255, .7);
     border: none;
 }
 
 .input-form-btn {
     background-color: #b71921;
     width: 100%;
-    height: 100%;
     color: white;
     border: none;
-    border-right: 1px solid #fff;
 }
 
+.input-form-btn.adv {
+    border-left: 1px solid #fff;
+
+}
 
 .input-form-cb {
     width: 100%;
-    height: 100%;
     padding: 10px;
     padding-left: 40px;
     background-color: rgba(255, 255, 255, .5);
@@ -103,7 +164,13 @@ body {
 
 }
 
-.material-icons {
+.search_bar .material-icons {
+
+
+    padding: 10px;
+}
+
+.navbar .material-icons {
     font-size: 40px;
 }
 
@@ -113,7 +180,17 @@ body {
 
 }
 
-/* ----------------------------------------------*/
+.account {
+    cursor: pointer;
+}
+
+.drop-account .dropdown-item-text {
+    text-align: center;
+}
+
+/* ------------------LISTING----------------------------*/
+
+
 
 .card {
     margin: auto;
@@ -138,14 +215,38 @@ body {
     overflow: hidden;
 }
 
+.filter-listing {
+    background: #4e555b;
+    padding: 20px;
+
+}
+
+
+.filter-listing input,select {
+    width: 100%;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, .7);
+    border: none;
+}
+
+
+
+/*------------------SINGLE LISTING--------------------------*/
 
 .title {
+    margin-top: 40px;
     font-size: xx-large;
-    box-shadow: 2px 2px 2px #000;
-    background: #fff;
-    padding-left: 25px;
+    background-color: #fff;
     margin-bottom: 10px;
+    overflow: hidden;
+    box-shadow: 0px 2px 2px 2px #4e555b;
+    padding: 10px;
 
+}
+
+.single_images img {
+
+    height: 100%;
 }
 
 .item {
@@ -172,7 +273,6 @@ body {
 }
 
 .img-thumb {
-
     filter: drop-shadow(2px 2px 5px #000);
     border-radius: 5px;
     cursor: pointer;
@@ -205,19 +305,58 @@ body {
 }
 
 .carousel {
-    border: 5px ridge #fff;
 }
 
 .price_address {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    background-color: #fff;
+    margin-top: 10px;
+    overflow: hidden;
+    font-size: larger;
+    box-shadow: 2px 2px 2px 2px #4e555b;
+
 }
 
 .info_item {
     font-size: .7em;
 }
 
-/*----------------------------------------------------------------------------------USER*/
+
+.requestDetails input, textarea {
+    width: 100%;
+    border: none;
+    margin-top: 10px;
+    border-bottom: 1px solid #b71921;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, .25);
+
+}
+
+.requestDetails input[type="submit"] {
+    background-color: #b71921;
+    color: #fff;
+}
+
+.requestDetails {
+    margin-top: 40px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 2px 2px 10px 2px #000;
+}
+
+.wrapper {
+    background-color: #000;
+}
+
+.requestDetails .info {
+    color: #b71921;
+    text-align: center;
+    font-size: larger;
+}
+
+/*--------------------------------REGISTRATION AND LOGIN--------------------------------------------------USER*/
 
 .center-card-design-register {
     display: flex;
@@ -233,9 +372,10 @@ body {
     text-align: center;
     font-size: xx-large;
 }
+
 .center-card-design-register
 input {
-    border:none;
+    border: none;
     border-bottom: 1px solid rgba(183, 25, 33, 1);
     padding: 10px 20px;
     width: 100%;
@@ -245,24 +385,24 @@ input {
 }
 
 
-.left_login{
+.left_login {
     min-height: 80vh;
     width: 100%;
-    background:url("../img/red-built-structure-against-sky-247532.jpg") center no-repeat;
+    background: url("../img/red-built-structure-against-sky-247532.jpg") center no-repeat;
     background-size: cover;
 }
 
-.left_register{
-    min-height: 80vh;
+.left_register {
     width: 100%;
-    background:url("../img/architecture-bungalow-clouds-daylight-451576.jpg") center no-repeat;
+    background: url("../img/architecture-bungalow-clouds-daylight-451576.jpg") center no-repeat;
     background-size: cover;
 
 }
+
 .center-card-design-register input[type="submit"] {
     width: 100%;
     text-align: center;
-    background: linear-gradient(to top right, #b71921 40% , #fda085 80%);
+    background: linear-gradient(to top right, #b71921 40%, #fda085 80%);
     border-radius: 40px;
     padding: 10px;
     color: #fff;
@@ -275,3 +415,180 @@ input {
     text-shadow: 1px 1px 1px #fff, 2px 2px 2px #000;
 }
 
+
+/*-------------DASHBOARD-------------------------------*/
+
+
+.left_pannel {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 20px;
+}
+
+
+.left_pannel .userPic {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    overflow: hidden;
+    border: 1px solid #b71921;
+    border-radius: 50%;
+
+}
+
+.center_pannel .card {
+
+    margin-top: 10px;
+}
+
+.center_pannel .button {
+    background-color: #b71921; /* Green */
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    box-shadow: 1px 1px 5px 1px #000000;
+    border-radius: 3px;
+}
+
+.center_pannel .button:active {
+    background-color: #fff; /* Green */
+    color: #b71921;
+    box-shadow: 1px 1px 5px 1px #b71921;
+}
+
+
+/*-----------------NEW LISTING---------------------------*/
+
+.new_upload_card {
+
+    background-color: #fff;
+    box-shadow: 0px 3px 10px 2px #000;
+    padding: 30px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.new_upload_button {
+    display: block;
+    margin: auto;
+    text-decoration: none;
+    margin-top: 20px;
+    border-radius: 50%;
+    background-color: #b71921;
+    color: #fff;
+    overflow: hidden;
+    transition: transform 1s;
+}
+
+.new_upload_button:hover {
+    text-decoration: none;
+    transform: rotate(180deg);
+}
+
+.new_upload_card input, .new_upload_card textarea, .new_upload_card select {
+    border: none;
+    border-bottom: 1px solid #b71921;
+    border-radius: 0px;
+    width: 100%;
+    padding: 20px;
+    margin: 10px 0px;
+}
+
+
+.newAds input[type="submit"] {
+    width: 100%;
+    text-align: center;
+    background: linear-gradient(to top right, #b71921 40%, #fda085 80%);
+    border-radius: 40px;
+    padding: 10px;
+    color: #fff;
+}
+
+.new_upload_card .card-heading {
+    text-align: center;
+    color: #b71921;
+}
+
+.alert > ul {
+    border: 1px solid black;
+    list-style-type: none;
+}
+
+.alert ul li ul {
+    list-style-type: none;
+
+}
+
+
+#page4 {
+    background: #ececec;
+}
+
+.img {
+    width: auto;
+    min-width: 240px;
+    min-height: 200px;
+    height: auto;
+    transition: background ease 1s;
+}
+
+/*
+.img1 {
+	background:url(../img/logo-2582748_960_720.png)  center no-repeat;
+background-size:contain;
+	shadow: 5px 5px 5px #000;
+
+}
+.img2 {
+	background: url(../img/unity2.png) center no-repeat;
+	shadow: 5px 5px 5px #000;
+	background-size:contain;
+}
+.img3 {
+	shadow: 5px 5px 5px #000;
+	background: url(../img/andr3.png) center no-repeat;
+	background-size:contain;
+
+}
+
+*/
+
+.x {
+    margin: 15px;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: -3px 3px 5px #000;
+    min-height: 300px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    transition: background 2s, transform 1s;
+}
+
+.x:hover {
+
+    transform: scale(.9, .9);
+}
+
+/*.x:hover >.img1 {
+	background: url(../img/logo-2582748_960_7202.png)  center no-repeat;
+	background-size:contain;
+}
+.x:hover >.img2 {
+	background: url(../img/unity3.png) center no-repeat;
+	background-size:contain;
+}
+.x:hover >.img3{
+	background: url(../img/anscdr2.png) center no-repeat;
+
+	background-size:contain;
+
+}
+*/
+
+/*---------------------------------------------------page5,6-----------------------------------------------*/

@@ -4,12 +4,78 @@
 {% load humanize%}
 {% block content %}
 
-<div class="row row-cols-lg-4 row-cols-md-3 row-cols-1 row-cols-xl-5" style="padding: 30px;">
+<div class="filter-listing">
+    <form action="{%url 'listings'%}">
+        <div class="container">
+            <div class="row no-gutters row-cols-3 filter-options">
+                <div class="filter-option1"></div>
+                <div class="filter-option1"></div>
+                <div class="filter-option1"></div>
+                <div class="filter-option1"></div>
+
+            </div>
+
+
+            <div class="row">
+                <div class="col-5">
+                    <input type="search" placeholder="Your Search Keywords Here">
+                </div>
+                <div class="col-3">
+                    <select class="listing-filter-dpd" name="order">
+                        <option value="price">Price : Low to High</option>
+                        <option value="-price">Price : High to Low</option>
+                        <option value="-created_date">Most Recent</option>
+                        <option value="created_date">Least Recent</option>
+                    </select>
+                </div>
+
+                <!-- Button trigger modal -->
+                <!--
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                  Launch demo modal
+                </button>
+
+                &lt;!&ndash; Modal &ndash;&gt;
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Filter</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                          <input type="range" max="1000" min="200" value="HIIIIIIII" name="name">
+                          <input type="text"value="HIIIIIIII" name="keywords">
+
+
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                &lt;!&ndash;
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                &ndash;&gt;
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                -->
+                <div class="col-4">
+                    <input type="submit">
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+</div>
+<div class="row row-cols-lg-3 row-cols-md-2 row-cols-1 row-cols-xl-5 main-listing" style="padding: 30px;">
 
     {% if items%}
     {% for item in items%}
 
-    <div class="col" style="margin-bottom: 15px;">
+    <div class="col listings" style="margin-bottom: 15px;">
 
         <div class="card">
             <div class="card-img ">
@@ -17,17 +83,22 @@
             </div>
             <div class="card-body">
                 <div class="card-title">
-                    <small><i class="fa fa-map-marker"></i><a href="#"> {{item.city}} / {{item.zipCode|lower}}</a>
+                    <small><i class="fa fa-map-marker"></i><a href="#"> {{item.city}} /
+                        {{item.zipCode|lower}}</a>
                     </small>
-                    <h4 class="text-danger">{{item.title}}</h4>
-                    <h5>$ {{item.price|intword}} /-</h5>
+                    <h5 class="text-danger">{{item.title|truncatewords:5}}</h5>
+                    <h6>$ {{item.price|intword|intcomma}} / Month</h6>
                     <div class="smallerItems row row-cols-2">
-                        <div class="col info_item"><i class="fa fa-building"></i> {{item.building_type|cut:"BUILDING"}}
+                        <div class="col info_item"><i class="fa fa-building"></i>
+                            {{item.building_type|cut:"Building"|truncatewords:1}}
                         </div>
-                        <div class="col info_item"><i class="fa fa-home"></i> {{item.space_given|cut:"BEDROOM"}}</div>
+                        <div class="col info_item"><i class="fa fa-home"></i>
+                            {{item.space_given|cut:"Bedroom"|truncatewords:1}}
+                        </div>
 
                         <div class="col info_item"><i class="fa  fa-car"></i> {{item.garage|default:'NO'}}</div>
-                        <div class="col info_item"><i class="fa  fa-wifi "></i> {{item.wifiIncluded|default:'NO' }}
+                        <div class="col info_item"><i class="fa  fa-wifi "></i> {{item.wifiIncluded|default:'NO'
+                            }}
                         </div>
 
                     </div>
@@ -45,7 +116,7 @@
     </div>
     {%endfor%}
     {%else%}
-    <h2>No results found for search parameters</h2>
+    <center><h3>No results found for search parameters</h3></center>
     {%endif%}
 </div>
 <nav aria-label="Page navigation example">

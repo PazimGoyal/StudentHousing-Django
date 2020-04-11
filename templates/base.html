@@ -3,19 +3,17 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="{% static 'css/lightbox.css' %}">
     <script src="https://kit.fontawesome.com/aa308d3366.js" crossorigin="anonymous"></script>
-
     <link rel="stylesheet" type="text/css" href="{% static 'css/style1.css' %}">
     <title>Student Housing {% block title%}{% endblock%}</title>
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark main-nav">
-    <a class="navbar-brand" href="/listings"><img src="{% static 'img/logo.png' %}" height="50"></a>
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark main-nav">
+    <a class="navbar-brand" href="/"><img src="{% static 'img/logo.png' %}" height="50"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -23,30 +21,29 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="/listings/search">Listings</a>
-            </li>
-
             <li class="nav-item">
-                <a class="nav-link" href="/listings/addListing">Post Ad.</a>
+                <a class="nav-link {% ifequal request.path '/videos/'%} active {% endifequal%}" href="/listings">Listings</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/addListing">Post for Free</a>
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">
-
+            <li class="nav-item">
+           <i class="fas fa-heart"></i> </li>
 
             <li class="nav-item dropdown">
-                <a class="nav-link " data-toggle="dropdown" id="navbarDropdown">
+                <a class="nav-link account" data-toggle="dropdown" id="navbarDropdown">
                     <i class="material-icons">account_circle</i><i class="material-icons">
                     keyboard_arrow_down
                 </i>
-
                 </a>
 
-                <div class="dropdown-menu dropdown-menu-right dropdown-default"
+                <div class="dropdown-menu dropdown-menu-right dropdown-default drop-account"
                      aria-labelledby="navbarDropdown">
-
                     {% if user.is_authenticated %}
                     <div class="dropdown-item-text">Welcome {{user.first_name|title}}{{user.last_name|title}}</div>
+                    <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="/user/dashboard"><i class="fas fa-chart-pie"></i>Dash Board</a>
                     <a class="dropdown-item" href="/user/logout"><i class="fas fa-sign-out-alt"></i>Log out</a>
                     {%else%}
@@ -62,128 +59,169 @@
         </ul>
     </div>
 </nav>
+
+
 {% block content%}{%endblock%}
-
-<footer class="page-footer font-small mdb-color pt-4">
-
-    <!-- Footer Links -->
-    <div class="container text-center text-md-left">
-
-        <!-- Footer links -->
-        <div class="row text-center text-md-left mt-2">
-
-            <!-- Grid column -->
-            <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-1">
-                <h6 class="text-uppercase mb-4 font-weight-bold">Company name</h6>
-                <p>Faltu text Faltu text Faltu text Faltu text Faltu text Faltu text Faltu text Faltu text Faltu text
-                    Faltu text Faltu text Faltu text Faltu text Faltu text Faltu text Faltu text Faltu text Faltu text
-                    Faltu text Faltu text Faltu text Faltu text Faltu text Faltu text .</p>
-            </div>
-            <!-- Grid column -->
-
-            <hr class="w-100 clearfix d-md-none">
-
-            <!-- Grid column -->
-            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-1">
-                <h6 class="text-uppercase mb-4 font-weight-bold">Products</h6>
-                <p>
-                    <a href="#!">Faltu text</a>
-                </p>
-                <p>
-                    <a href="#!">Faltu text</a>
-                </p>
-                <p>
-                    <a href="#!">Faltu text</a>
-                </p>
-                <p>
-                    <a href="#!">Faltu text</a>
-                </p>
-            </div>
-            <!-- Grid column -->
-
-            <hr class="w-100 clearfix d-md-none">
-
-
-            <!-- Grid column -->
-            <hr class="w-100 clearfix d-md-none">
-
-            <!-- Grid column -->
-            <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
-                <h6 class="text-uppercase mb-4 font-weight-bold">Contact</h6>
-                <p>
-                    <i class="fas fa-home mr-3"></i> Montreal , QC, Canada</p>
-                <p>
-                    <i class="fas fa-envelope mr-3"></i> pazimgoyal@gmail.com</p>
-                <p>
-                    <i class="fas fa-phone mr-3"></i> + 01 (438)-9793788</p>
-                <p>
-                    <i class="fas fa-print mr-3"></i></p>
-            </div>
-            <!-- Grid column -->
+<footer class="page-footer">
+    <div class="top-footer">
+        <div>
+            <div class="footer-logo"><i class="fas fa-phone fa-2x"></i></div>
+            <div class="footer-text-title">Contact Us</div>
+            <div class="footer-text">Phone: +1-4389793788 <br>Email : pazimgoyal@gmail.com</div>
 
         </div>
-
-        <hr>
-
-        <!-- Grid row -->
-        <div class="row d-flex align-items-center">
-
-            <div class="col-md-7 col-lg-8">
-
-                <p class="text-center text-md-left">© 2020 Copyright:
-                    <a href="https://mdbootstrap.com/">
-                        <strong> pazimgoyal.com</strong>
-                    </a>
-                </p>
-
-            </div>
-            <!-- Grid column -->
-
-            <!-- Grid column -->
-            <div class="col-md-5 col-lg-4 ml-lg-0">
-
-                <!-- Social buttons -->
-                <div class="text-center text-md-right">
-                    <ul class="list-unstyled list-inline">
-                        <li class="list-inline-item">
-                            <a class="btn-floating btn-sm rgba-white-slight mx-1">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a class="btn-floating btn-sm rgba-white-slight mx-1">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a class="btn-floating btn-sm rgba-white-slight mx-1">
-                                <i class="fab fa-google-plus-g"></i>
-                            </a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a class="btn-floating btn-sm rgba-white-slight mx-1">
-                                <i class="fab fa-linkedin-in"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-
-            </div>
-            <!-- Grid column -->
+        <div>
+            <div class="footer-logo"><i class="fas fa-map-marked-alt fa-2x"></i></div>
+            <div class="footer-text-title">Find Us</div>
+            <div class="footer-text">9091, Rue de Godbout<br>Lasalle<br>Montreal<br>H8R 2H7</div>
 
         </div>
-        <!-- Grid row -->
+        <div>
+            <div class="footer-logo"><i class="fas fa-thumbs-up fa-2x"></i></div>
+            <div class="footer-text-title">Social Media</div>
+            <div class="footer-text"><i class="fab fa-facebook"> Facebook</i>
+                <br>
+                <br>
+                <i class="fab fa-instagram"> Instagram</i>
+                <br>
+                <br>
+                <i class="fab fa-google-plus-g"> Google + </i>
+                <br>
+                <br>
+                <i class="fab fa-twitter"> Twitter</i>
+
+            </div>
+        </div>
+    </div>
+    <div class="row bottom-footer">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4"><i class="far fa-copyright"></i> Pazimgoyal.com .</div>
+        <div class="col-lg-4"></div>
+    </div>
+</footer>
+<!--
+
+&lt;!&ndash; Footer Links &ndash;&gt;
+<div class="container text-center text-md-left">
+
+    &lt;!&ndash; Footer links &ndash;&gt;
+    <div class="row text-center text-md-left mt-2">
+
+        &lt;!&ndash; Grid column &ndash;&gt;
+        <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-1">
+            <h6 class="text-uppercase mb-4 font-weight-bold">Company name</h6>
+            <p>Faltu text Faltu text Faltu text Faltu text Faltu text Faltu text Faltu text Faltu text Faltu text
+                Faltu text Faltu text Faltu text Faltu text Faltu text Faltu text Faltu text Faltu text Faltu text
+                Faltu text Faltu text Faltu text Faltu text Faltu text Faltu text .</p>
+        </div>
+        &lt;!&ndash; Grid column &ndash;&gt;
+
+        <hr class="w-100 clearfix d-md-none">
+
+        &lt;!&ndash; Grid column &ndash;&gt;
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-1">
+            <h6 class="text-uppercase mb-4 font-weight-bold">Products</h6>
+            <p>
+                <a href="#!">Faltu text</a>
+            </p>
+            <p>
+                <a href="#!">Faltu text</a>
+            </p>
+            <p>
+                <a href="#!">Faltu text</a>
+            </p>
+            <p>
+                <a href="#!">Faltu text</a>
+            </p>
+        </div>
+        &lt;!&ndash; Grid column &ndash;&gt;
+
+        <hr class="w-100 clearfix d-md-none">
+
+
+        &lt;!&ndash; Grid column &ndash;&gt;
+        <hr class="w-100 clearfix d-md-none">
+
+        &lt;!&ndash; Grid column &ndash;&gt;
+        <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+            <h6 class="text-uppercase mb-4 font-weight-bold">Contact</h6>
+            <p>
+                <i class="fas fa-home mr-3"></i> Montreal , QC, Canada</p>
+            <p>
+                <i class="fas fa-envelope mr-3"></i> pazimgoyal@gmail.com</p>
+            <p>
+                <i class="fas fa-phone mr-3"></i> + 01 (438)-9793788</p>
+            <p>
+                <i class="fas fa-print mr-3"></i></p>
+        </div>
+        &lt;!&ndash; Grid column &ndash;&gt;
 
     </div>
-    <!-- Footer Links -->
+
+    <hr>
+
+    &lt;!&ndash; Grid row &ndash;&gt;
+    <div class="row d-flex align-items-center">
+
+        <div class="col-md-7 col-lg-8">
+
+            <p class="text-center text-md-left">© 2020 Copyright:
+                <a href="https://mdbootstrap.com/">
+                    <strong> pazimgoyal.com</strong>
+                </a>
+            </p>
+
+        </div>
+        &lt;!&ndash; Grid column &ndash;&gt;
+
+        &lt;!&ndash; Grid column &ndash;&gt;
+        <div class="col-md-5 col-lg-4 ml-lg-0">
+
+            &lt;!&ndash; Social buttons &ndash;&gt;
+            <div class="text-center text-md-right">
+                <ul class="list-unstyled list-inline">
+                    <li class="list-inline-item">
+                        <a class="btn-floating btn-sm rgba-white-slight mx-1">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a class="btn-floating btn-sm rgba-white-slight mx-1">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a class="btn-floating btn-sm rgba-white-slight mx-1">
+                            <i class="fab fa-google-plus-g"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a class="btn-floating btn-sm rgba-white-slight mx-1">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+        &lt;!&ndash; Grid column &ndash;&gt;
+
+    </div>
+    &lt;!&ndash; Grid row &ndash;&gt;
+
+</div>
+&lt;!&ndash; Footer Links &ndash;&gt;
 
 </footer>
+-->
 
 
 <script type="text/javascript" src="{% static 'js/jquery.js'%}"></script>
 
 <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/lightbox.js'%}"></script>
+
+<script type="text/javascript" src="{% static 'js/scripr.js'%}"></script>
 </body>
 </html>
 

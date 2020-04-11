@@ -1,121 +1,141 @@
 {% extends 'base.html' %}
 
 {% block title %} | Welcome{% endblock%}
-
-
+{% load static%}
+{%load humanize%}
 {% block content %}
+<div class="indexMain">
+    <div class="container search_bar_full">
 
-<div class="container">
-<div style="margin-top: 20px"></div>
-    <form action="{%url 'search'%}">
-        <div class="row no-gutters search_bar">
-            <div class="col-8">
-                <input type="text" class="input-form-txt" name="keywords" placeholder="Keywords ">
-            </div>
-            <div class="col-3">
-                <button class="input-form-btn" type="submit"><i class="material-icons">search</i></button>
-            </div>
-
-            <div class="col-1">
-                <button class="input-form-btn" type="button" data-toggle="collapse" data-target="#advanceSearch"
-                        aria-expanded="false" aria-controls="collapseExample"><i class="material-icons">keyboard_arrow_down</i>
-                </button>
-            </div>
-
-        </div>
-
-        <div class="collapse" id="advanceSearch">
-            <div class="row advanceSearch">
-                <div class="col-3">
-                    <select class="input-form-dpd" name="city">
-                        <option value="c">City</option>
-                        <option value="MTL">Montreal</option>
-                        <option value="TOR">Toronto</option>
-                    </select>
+        <form action="{%url 'listings'%}">
+            <div class="row no-gutters search_bar">
+                <div class="col-8">
+                    <input type="search" class="input-form-txt" name="keywords" placeholder="Keywords ">
                 </div>
-                <div class="col-3">
-                    <select class="input-form-dpd" name="sub-city">
-                        <option value="m">Area</option>
-                        <option>Montreal</option>
-                        <option>LaSalle</option>
-                        <option>Lachine</option>
-                        <option>La Plateau-Mount-Royal</option>
-                        <option>Montreal-Nord</option>
-                        <option>Toronto</option>
-                    </select>
+                <div class="col-2">
+                    <button class="input-form-btn" type="submit"><i class="material-icons">search</i></button>
                 </div>
 
-                <div class="col-3">
-                    <input type="number" class="input-form-txt" placeholder="Max-Price" name="price">
+                <div class="col-2">
+                    <button class="input-form-btn adv" type="button" data-toggle="collapse" data-target="#advanceSearch"
+                            aria-expanded="false" aria-controls="collapseExample"><i class="material-icons">keyboard_arrow_down</i>
+                    </button>
                 </div>
-                <div class="col-3">
-                    <select class="input-form-dpd" name="space">
-                        <option value="SQ">Space Requirement</option>
-                        <option value="PB">Private Bedroom</option>
-                        <option value="SB">Shared Bedroom</option>
-                        <option value="EP">Whole Apartment/House</option>
-                    </select></div>
-
             </div>
 
+            <div class="collapse" id="advanceSearch">
+                <div class="row advanceSearch">
+                    <div class="col-3">
+                        <select class="input-form-dpd" name="city">
+                            <option value="c">City</option>
+                            <option value="Montreal">Montreal</option>
+                            <option value="Toronto">Toronto</option>
+                        </select>
+                    </div>
 
-            <div class="row advanceSearch">
-                <div class="col-3">
-                    <input type="text" class="input-form-txt" placeholder="size">
+                    <div class="col-3">
+                        <input type="number" class="input-form-txt" placeholder="Min-Price" name="min-price">
+                    </div>
+
+                    <div class="col-3">
+                        <input type="number" class="input-form-txt" placeholder="Max-Price" name="max-price">
+                    </div>
+                    <div class="col-3">
+                        <select class="input-form-dpd" name="space">
+                            <option value="SQ">Space Requirement</option>
+                            <option value="PB">Private Bedroom</option>
+                            <option value="SB">Shared Bedroom</option>
+                            <option value="EP">Whole Apartment/House</option>
+                        </select></div>
                 </div>
-                <div class="col-3">
-                    <select class="input-form-dpd" name="furniture">
-                        <option value="FQ">Furniture</option>
-                        <option value="FF">Fully Furnished</option>
-                        <option value="SF">Semi Furnished</option>
-                        <option value="NF">Not Furnished</option>
-                    </select></div>
+                <div class="row advanceSearch">
 
-                <div class="col-3">
-                    <div class=" custom-checkbox input-form-cb">
-                        <input type="checkbox" class="custom-control-input" id="customCheck">
-                        <label class="custom-control-label" for="customCheck">Parking</label>
+                    <div class="col-3">
+                        <input type="text" class="input-form-txt" placeholder="size">
+                    </div>
+                    <div class="col-3">
+                        <select class="input-form-dpd" name="furniture">
+                            <option value="FQ">Furniture</option>
+                            <option value="Fully Furnished">Fully Furnished</option>
+                            <option value="Semi Furnished">Semi Furnished</option>
+                            <option value="Not Furnished">Not Furnished</option>
+                        </select></div>
+
+                    <div class="col-3">
+                        <div class=" custom-checkbox input-form-cb">
+                            <input type="checkbox" class="custom-control-input" id="customCheck">
+                            <label class="custom-control-label" for="customCheck">Parking</label>
+                        </div>
+                    </div>
+
+                    <div class="col-3">
+                        <div class=" custom-checkbox input-form-cb">
+                            <input type="checkbox" class="custom-control-input" id="customCheck2">
+                            <label class="custom-control-label" for="customCheck2">PETS</label>
+                        </div>
                     </div>
                 </div>
-
-                <div class="col-3">
-                    <div class=" custom-checkbox input-form-cb">
-                        <input type="checkbox" class="custom-control-input" id="customCheck2">
-                        <label class="custom-control-label" for="customCheck2">PETS</label>
-                    </div>
-                </div>
-
-
-    </form>
+            </div>
+        </form>
+    </div>
 </div>
 
+<!--
+<div class="homepage row">
+<div class="homepage_main col-lg-4" style="background: #fc7430"></div>
+<div class="homepage_main col-lg-4" style="background: #9c7430"></div>
+<div class="homepage_main col-lg-4" style="background: #4c7430"></div>
+
 </div>
+-->
+
+<div id="page4" class="row">
+    <div class="col-lg-4">
+      <div class="x">
+        <div class="img1 img"></div>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="x">
+        <div class="img2 img"></div>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="x">
+        <div class="img3 img"></div>
+      </div>
+    </div>
+  </center>
 </div>
+
 <div class="" style="padding: 20px">
     <h2 class="headingIndex">New Listings</h2>
     <div class="row row-cols-lg-4 row-cols-md-3 row-cols-1 row-cols-xl-5" style="padding: 30px;"> {% for item in items%}
 
         <div class="col" style="margin-bottom: 15px;">
-
             <div class="card">
                 <div class="card-img ">
                     <img class="img-responsive" src="{{item.image1.url}}">
                 </div>
                 <div class="card-body">
                     <div class="card-title">
-                        <small><i class="fa fa-map-marker"></i><a href="#"> {{item.city}} / {{item.zipCode|lower}}</a>
+                        <small style="text-align: right;"><i class="fa fa-map-marker"></i><a href="#"> {{item.city}} -
+                            {{item.zipCode|upper}}</a>
                         </small>
-                        <h4 class="text-danger">{{item.title}}</h4>
-                        <h5>$ {{item.price}} /-</h5>
+                        <h5 class="text-danger">{{item.title|title|truncatewords:5}}</h5>
+                        <h6>$ {{item.price|intword|intcomma}} /Month</h6>
                         <div class="smallerItems row row-cols-2">
                             <div class="col info_item"><i class="fa fa-building"></i>
-                                {{item.building_type|cut:"BUILDING"}}
+                                {{item.building_type|cut:"Building"|title}}
                             </div>
-                            <div class="col info_item"><i class="fa fa-home"></i> {{item.space_given|cut:"BEDROOM"}}
+                            <div class="col info_item"><i class="fa fa-home"></i> {{item.space_given|cut:"Bedroom"}}
                             </div>
 
-                            <div class="col info_item"><i class="fa  fa-car"></i> {{item.garage|default:'NO'}}</div>
-                            <div class="col info_item"><i class="fa  fa-wifi "></i> {{item.wifiIncluded|default:'NO' }}
+                            <div class="col info_item"><i class="fa  fa-car"></i> {{item.garage|yesno:"Yes, No ,
+                                Maybe"}}
+                            </div>
+                            <div class="col info_item"><i class="fa  fa-wifi "></i> {{item.wifiIncluded|yesno:"Yes, No ,
+                                Maybe"}}
                             </div>
 
                         </div>
@@ -171,6 +191,7 @@
         {% endif%}
     </nav>
 </div>
+
 {% endblock %}}
 
 

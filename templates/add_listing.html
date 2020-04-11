@@ -1,21 +1,149 @@
 {% extends 'base.html' %}
 {% block title %} | New Listing{% endblock%}
-
 {% block content %}
 
+<div class="newAds container">
+    <form method="POST" enctype="multipart/form-data"> {% csrf_token%}
+        {% if messages %}
+        {% for message in messages %}
+        {% if message.tags %}
+        <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+            {%else%}
+            <div class="alert alert-alert alert-dismissible fade show" role="alert">
+                {% endif %}
+                <strong>{{ message }}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {% endfor %}
+            {% endif %}
 
-<form method="POST" class="myform" enctype="multipart/form-data"> {% csrf_token%}
 
-    <div class="container center-card-design-register">
-        <div class="head">Post Ad.</div>
-        {{ form.as_p }}
-        <input type="submit" value="Submit" class="submit">
+            <div class="new_upload_card container">
+                <div class="card-heading">Basic Details</div>
+                <input type="text" name="title" placeholder="Title (keep it short and sweet) *" required>
+                <textarea name="description" placeholder="Your Description Please:-" rows="6"></textarea>
+                <a href="#card2">
+                    <button type="button" class="new_upload_button"><i class="material-icons">keyboard_capslock
+                    </i></button>
+                </a>
+            </div>
+            <div class="new_upload_card container">
+                <div class="card-heading">Other Details</div>
+                <div class="row row-cols-3">
+                    <div class="col-lg-4">
+                        <input type="text" name="price" placeholder="Price / Month  *" required>
+                    </div>
+                    <div class="col-4">
+                        <input type="number" step="0.5" name="size" class="input-form-txt" placeholder="size (3.5 , 5.5)" max="20" min="0.5">
+                    </div>
+                    <div class="col-4">
+                        <input type="number" step="0.5" name="bathroom" class="input-form-txt" placeholder="Bathrooms (1, 1.5)" max="20" min="1">
+                    </div>
 
 
-    </div>
+                    <div class="col-4">
+                        <select class="input-form-dpd" name="space_given">
+                            <option value="NOT AVAILABLE">Space Type</option>
+                            <option value="Private Bedroom">Private Bedroom</option>
+                            <option value="Shared Bedroom">Shared Bedroom</option>
+                            <option value="Entire Place">Whole Apartment/House</option>
+                        </select></div>
+
+                    <div class="col-4">
+                        <select class="input-form-dpd" name="building_type">
+                            <option value="NOT AVAILABLE">BUILDING TYPE</option>
+                            <option value="Apartment Building">Apartment Building</option>
+                            <option value="House">House</option>
+                            <option value="Basement">Basement</option>
+                        </select></div>
 
 
-</form>
+                    <div class="col-4">
+                        <select class="input-form-dpd" name="furnished">
+                            <option value="NOT AVAILABLE">Furniture</option>
+                            <option value="Fully Furnished">Fully Furnished</option>
+                            <option value="Semi Furnished">Semi Furnished</option>
+                            <option value="Not Furnished">Not Furnished</option>
+                        </select></div>
 
+                    <div class="col-3">
+                        <div class=" custom-checkbox input-form-cb">
+                            <input type="checkbox" class="custom-control-input" id="Garage" name="garage">
+                            <label class="custom-control-label" for="Garage">Garage/Parking</label>
+                        </div>
+                    </div>
+
+                    <div class="col-3">
+                        <div class=" custom-checkbox input-form-cb">
+                            <input type="checkbox" class="custom-control-input" id="animals" name="animalsAllowed">
+                            <label class="custom-control-label" for="animals">Animals</label>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class=" custom-checkbox input-form-cb">
+                            <input type="checkbox" class="custom-control-input" id="hydro" name="electricityIncluded">
+                            <label class="custom-control-label" for="hydro">HYDRO</label>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class=" custom-checkbox input-form-cb">
+                            <input type="checkbox" class="custom-control-input" id="wifi" name="wifiIncluded">
+                            <label class="custom-control-label" for="wifi">WIFI</label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="new_upload_card container">
+                <div class="card-heading">Address Details</div>
+                <input type="text" name="address" placeholder="Your Address *" required>
+
+                <div class="row row-cols-3">
+                    <div class="col-4">
+                        <select class="input-form-dpd" name="city">
+                            <option value="Montreal">Montreal</option>
+                            <option value="Toronto">Toronto</option>
+                        </select>
+                    </div>
+
+                    <div class="col-4">
+                        <input type="text" name="zipCode" placeholder="ZIP CODE  (A1A1A1) *" required>
+                    </div>
+
+                </div>
+
+
+                <a href="#card2">
+                    <button type="button" class="new_upload_button"><i class="material-icons">keyboard_capslock
+                    </i></button>
+                </a>
+            </div>
+
+
+            <div class="new_upload_card" id="card2">
+                <div class="images row row-cols-xl-4 ">
+                    <input name="image1" type="file" accept="image/*">
+                    <input name="image2" type="file" accept="image/*">
+                    <input name="image3" type="file" accept="image/*">
+                    <input name="image4" type="file" accept="image/*">
+                    <input name="image5" type="file" accept="image/*">
+                    <input name="image6" type="file" accept="image/*">
+                    <input name="image7" type="file" accept="image/*">
+                    <input name="image8" type="file" accept="image/*">
+                    <input name="image9" type="file" accept="image/*">
+                    <input name="image10" type="file" accept="image/*">
+                    <input name="image11" type="file" accept="image/*">
+                    <input name="image12" type="file" accept="image/*">
+                </div>
+                <button type="button" class="new_upload_button"><i class="material-icons">keyboard_capslock
+                </i></button>
+            </div>
+            <div></div>
+            <input type="submit" value="Submit" class="submit">
+
+    </form>
+</div>
 
 {%endblock%}

@@ -4,8 +4,6 @@
 {% block content %}
 {% load humanize%}
 <div class="container">
-    <div class="head">USER DASHBOARD</div>
-
     {% if messages %}
     {% for message in messages %}
     {% if message.tags %}
@@ -24,21 +22,47 @@
 
 
 </div>
-
 <div class="row dashboard">
-    <div class="col-4 left_pannel"></div>
+    <div class="col-2 left_pannel">
+        <img src="{{userinfo.photo.url}}" class="userPic">
+        <div class="head">Welcome {{user.first_name}} {{user.last_name}}</div>
+        <div>{{user.email}}</div>
+        <div>{{userinfo.phone}}</div>
+        <div>{{user.username}}</div>
+        <div>{{userinfo.zip}}</div>
+        <div>{{user.city}}</div>
+        <i class="material-icons">create</i>
 
-    <div class="col-6 center_pannel">
+    </div>
+
+    <div class="col-7 center_pannel">
         {% if items%}
         {% for item in items%}
+        <div class="card">
+            <div class="row ">
+                <div class="col-md-4">
+                    <img src="{{item.image1.url}}" class="w-100">
+                </div>
+                <div class="col-md-6 px-3">
+                    <div class="card-block px-3">
+                        <h4 class="card-title">{{item.title}}</h4>
+                        <p class="card-text">{{item.description}} </p>
+                    </div>
+                </div>
+                <div class="col-md-2"
+                     style="display: flex; flex-direction: column; justify-content: space-around; align-items: center;">
+                    <a href="#" class="button"><span class="material-icons">brush</span> Edit</a>
+                    <a href="#" class="button"><span class="material-icons">delete_sweep</span>delete</a>
+                    <a href="/listings/{{item.id}}" class="button"><i class="material-icons">fullscreen</i>view</a>
 
-        <!-- card Code -->
+                </div>
 
+            </div>
+        </div>
         {%endfor%}
         {%else%}
-        <h2>No results found for search parameters</h2>
+        <h6>YOU DONOT HAVE ANY AD'S</h6>
         {%endif%}
-
         <nav aria-label="Page navigation example">
             {% if items.has_other_pages%}
             <ul class="pagination justify-content-center">
@@ -75,9 +99,7 @@
             </ul>
             {% endif%}
         </nav>
-
     </div>
-
     <div class="col-2 right_pannel"></div>
 </div>
 {%endblock%}

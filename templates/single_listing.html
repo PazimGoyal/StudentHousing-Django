@@ -8,7 +8,7 @@
 
 <div class="row">
     <div class="col-lg-1"></div>
-    <div class="col-lg-6">
+    <div class="col-lg-7">
         <div class="title">{{listing.title|title}}</div>
 
 
@@ -23,16 +23,14 @@
             <div class="carousel-inner" role="listbox"
                  style=" width:100%; height: 500px !important; background-color: #1d2124; color: #fff;">
 
-                <div class="carousel-item active">
+                <div class="carousel-item active single_images">
                     <img class="d-block w-100" src="{{listing.image1.url }}"
-                         style="height: 100%; max-width: fit-content; display: block; margin: auto;"
                          alt="First slide">
                 </div>
                 {%for i in image%}
                 {% if not forloop.first %}
-                <div class="carousel-item">
+                <div class="carousel-item single_images">
                     <img class="d-block w-100" src="{{i}}"
-                         style="height: 100%; max-width: fit-content; display: block; margin: auto;"
                          alt="slide">
                 </div>
                 {%endif%}
@@ -66,8 +64,9 @@
         {%endif%}
 
         <div class="price_address">
-            <div class="item">$ {{listing.price|intword|intcomma}}</div>
-            <div class="item"><i class="fas fa-pin"></i>{{listing.address}}, {{listing.city}}</div>
+            <div class="item"><i class="fas fa-hand-holding-usd"></i>&nbsp;{{listing.price|intword|intcomma}}</div>
+            <div class="item"><i class="fas fa-map-marker-alt"></i>&nbsp;{{listing.address}}, {{listing.city}}, Canada
+            </div>
         </div>
 
         <div class="itemall ">
@@ -93,8 +92,51 @@
     <div class="col-lg-1"></div>
     <div class="col-lg-3 right-side-area">
 
+        <div class="requestDetails">
+                   {% if messages %}
+        {% for message in messages %}
+        {% if message.tags %}
+        <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+            {%else%}
+            <div class="alert alert-alert alert-dismissible fade show" role="alert">
+                {% endif %}
+                <strong>{{ message }}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {% endfor %}
+            {% endif %}
 
-        AREA FOR USER CHAT
+            <div class="info">Request Details from {{listing.user.first_name}} {{listing.user.last_name}}</div>
+            <form action="{%url 'email'%}" method="POST">{%csrf_token%}
+
+                {% if user.is_authenticated%}
+                <input type="text" placeholder="Name" value="{{user.first_name}} {{user.last_name}}" name="name">
+                <input type="text" placeholder="your Email" value="{{user.email}}" name="email">
+
+                {%else%}
+                <input type="text" placeholder="Name" name="name">
+                <input type="text" placeholder="your Email" name="email">
+                {%endif%}
+
+
+                <!--
+                                <input type="hidden" name="current_path" value="{{request.path}}">
+                -->
+
+                <input type="hidden" value="{{listing.user.email}}" name="listing_by">
+                <input type="hidden" value="{{request.path}}" name="listing_url">
+                <input type="text" placeholder="mobile (OPTIONAL)" name="phone">
+                <textarea placeholder="ASK?" rows="6" name="description">Hi I am Interested</textarea>
+                <input type="submit" value="SEND"></input>
+
+
+            </form>
+
+
+        </div>
+
     </div>
 </div>
 
