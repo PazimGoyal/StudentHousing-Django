@@ -102,7 +102,7 @@ body {
 /* ----------------INDEX------------------------------*/
 
 .indexMain {
-    background: url("../img/sky-sunset-clouds-bright-36464.jpg") top;
+    background: url("../img/aerial-view-of-buildings-2889701.jpg") top;
     /*
     background-image: linear-gradient(to top, #e7e7e7 0%, #b71921 100%);
     */
@@ -118,7 +118,7 @@ body {
     position: absolute;
     height: 100%;
     width: 100%;
-/*    background-color: rgba(0,0,0,.5);*/
+    background-color: rgba(0,0,0,.7);
 }
 
 .homepage {
@@ -453,12 +453,19 @@ input {
 .center-card-design-register input[type="submit"] {
     width: 100%;
     text-align: center;
-    background: linear-gradient(to top right, #b71921 40%, #fda085 80%);
+    background: linear-gradient(to top right, #b71921 60%, #fda085 120%);
     border-radius: 40px;
     padding: 10px;
     color: #fff;
+transition: background 2s;
 
 }
+
+.center-card-design-register input[type="submit"]:hover {
+    background: linear-gradient(to bottom left, #b71921 60%, #fda085 120%);
+
+}
+
 
 .headingIndex {
     width: 100%;
@@ -624,7 +631,7 @@ background-size:contain;
 }
 
 .x.x1 {
-    background: url("../img/hotel-room-beds-twin.jpg") center no-repeat;
+    background: url("../img/travel-hotel-room-hotel-room-bed-interior.jpg") center no-repeat;
     background-size: cover;
 }
 

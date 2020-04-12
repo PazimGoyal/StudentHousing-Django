@@ -27,7 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     '*'
-]  # Application definition
+]
+# Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -39,7 +40,6 @@ INSTALLED_APPS = [
     'listings.apps.ListingsConfig',
     'users.apps.UsersConfig',
     'django.contrib.humanize',
-    "crispy_forms"
 ]
 
 MIDDLEWARE = [
