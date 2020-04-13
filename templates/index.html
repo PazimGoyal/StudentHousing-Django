@@ -11,7 +11,7 @@
         <form action="{%url 'listings'%}">
             <div class="row no-gutters search_bar">
                 <div class="col-8">
-                    <input type="search" class="input-form-txt" name="keywords" placeholder="Keywords ">
+                    <input type="search" class="input-form-txt" name="keywords" placeholder="Keywords">
                 </div>
                 <div class="col-2">
                     <button class="input-form-btn" type="submit"><i class="material-icons">search</i></button>
@@ -19,59 +19,60 @@
 
                 <div class="col-2">
                     <button class="input-form-btn adv" type="button" data-toggle="collapse" data-target="#advanceSearch"
-                            aria-expanded="false" aria-controls="collapseExample"><i class="material-icons  js-rotate-if-collapsed">keyboard_arrow_down</i>
+                            aria-expanded="false" aria-controls="collapseExample"><i
+                            class="material-icons  js-rotate-if-collapsed">keyboard_arrow_down</i>
                     </button>
                 </div>
             </div>
 
             <div class="collapse" id="advanceSearch">
                 <div class="row advanceSearch">
-                    <div class="col-3">
-                        <select class="input-form-dpd" name="city">
-                            <option value="c">City</option>
-                            <option value="Montreal">Montreal</option>
-                            <option value="Toronto">Toronto</option>
-                        </select>
+
+                    <div class="col-lg-3 col-6">
+                        <input type="number" class="input-form-txt" placeholder="Min-Price" name="min_price">
                     </div>
 
-                    <div class="col-3">
-                        <input type="number" class="input-form-txt" placeholder="Min-Price" name="min-price">
+                    <div class="col-lg-3 col-6">
+                        <input type="number" class="input-form-txt" placeholder="Max-Price" name="max_price">
                     </div>
-
-                    <div class="col-3">
-                        <input type="number" class="input-form-txt" placeholder="Max-Price" name="max-price">
-                    </div>
-                    <div class="col-3">
-                        <select class="input-form-dpd" name="space">
-                            <option value="SQ">Space Requirement</option>
-                            <option value="PB">Private Bedroom</option>
-                            <option value="SB">Shared Bedroom</option>
-                            <option value="EP">Whole Apartment/House</option>
-                        </select></div>
-                </div>
-                <div class="row advanceSearch">
-
-                    <div class="col-3">
+                    <div class="col-lg-3 col-6">
                         <input type="text" class="input-form-txt" placeholder="size">
                     </div>
-                    <div class="col-3">
-                        <select class="input-form-dpd" name="furniture">
-                            <option value="FQ">Furniture</option>
-                            <option value="Fully Furnished">Fully Furnished</option>
-                            <option value="Semi Furnished">Semi Furnished</option>
-                            <option value="Not Furnished">Not Furnished</option>
-                        </select></div>
 
-                    <div class="col-3">
+                    <div class="col-lg-3 col-6">
                         <div class=" custom-checkbox input-form-cb">
-                            <input type="checkbox" class="custom-control-input" id="customCheck">
+                            <input type="checkbox" class="custom-control-input" id="customCheck" name="garage">
                             <label class="custom-control-label" for="customCheck">Parking</label>
                         </div>
                     </div>
 
-                    <div class="col-3">
+                </div>
+                <div class="row advanceSearch">
+
+                    <div class="col-lg-3 col-6">
+                        <select class="input-form-dpd" name="furniture">
+                            {% for i,j in f.items %}
+                            <option value="{{i}}">{{j}}</option>
+                            {%endfor%}
+                        </select></div>
+                    <div class="col-lg-3 col-6">
+                        <select class="input-form-dpd" name="space">
+                            {% for i,j in s.items %}
+                            <option value="{{i}}">{{j}}</option>
+                            {%endfor%}
+                        </select></div>
+                    <div class="col-lg-3 col-6">
+                        <select class="input-form-dpd" name="city">
+                            {% for i,j in c.items %}
+                            <option value="{{i}}">{{j}}</option>
+                            {%endfor%}
+                        </select>
+                    </div>
+
+
+                    <div class="col-lg-3 col-6">
                         <div class=" custom-checkbox input-form-cb">
-                            <input type="checkbox" class="custom-control-input" id="customCheck2">
+                            <input type="checkbox" class="custom-control-input" id="customCheck2" name="animalsAllowed">
                             <label class="custom-control-label" for="customCheck2">PETS</label>
                         </div>
                     </div>
@@ -81,37 +82,29 @@
     </div>
 </div>
 
-<!--
-<div class="homepage row">
-<div class="homepage_main col-lg-4" style="background: #fc7430"></div>
-<div class="homepage_main col-lg-4" style="background: #9c7430"></div>
-<div class="homepage_main col-lg-4" style="background: #4c7430"></div>
-
-</div>
--->
 
 <div id="page4" class="row">
     <div class="col-lg-4">
-      <div class="x x1">
-          <div class="innertxt">Shared Bedrooms</div>
-      </div>
+        <div class="x x1">
+            <div class="innertxt">Shared Bedrooms</div>
+        </div>
     </div>
     <div class="col-lg-4">
-      <div class="x x2">
-          <div class="innertxt">Private Bedrooms</div>
+        <div class="x x2">
+            <div class="innertxt">Private Bedrooms</div>
 
-      </div>
+        </div>
     </div>
     <div class="col-lg-4">
-      <div class="x x3">
-          <div class="innertxt">Shared Bedrooms</div>
+        <div class="x x3">
+            <div class="innertxt">Shared Bedrooms</div>
 
-      </div>
+        </div>
     </div>
-  </center>
+    </center>
 </div>
 
-<div class="" style="padding: 20px">
+<div class="" style="padding-top: 40px">
     <h2 class="headingIndex">New Listings</h2>
     <div class="row row-cols-lg-4 row-cols-md-3 row-cols-1 row-cols-xl-5" style="padding: 30px;"> {% for item in items%}
 
@@ -134,13 +127,11 @@
                             <div class="col info_item"><i class="fa fa-home"></i> {{item.space_given|cut:"Bedroom"}}
                             </div>
 
-                            <div class="col info_item"><i class="fa  fa-car"></i> {{item.garage|yesno:"Yes, No ,
-                                Maybe"}}
+                            <div class="col info_item"><i class="fa  fa-car"></i> {{item.garage|yesno:"Yes,No"}}
                             </div>
-                            <div class="col info_item"><i class="fa  fa-wifi "></i> {{item.wifiIncluded|yesno:"Yes, No ,
-                                Maybe"}}
+                            <div class="col info_item"><i class="fa  fa-wifi "></i> {{item.wifiIncluded|yesno:"Yes,
+                                No"}}
                             </div>
-
                         </div>
                     </div>
 
@@ -157,42 +148,6 @@
         {%endfor%}
 
     </div>
-    <nav aria-label="Page navigation example">
-        {% if items.has_other_pages%}
-        <ul class="pagination justify-content-center">
-
-            {%if items.has_previous%}
-            <li class="page-item">
-                <a class="page-link" href="?page={{items.previous_page_number}}" tabindex="-1">Previous</a>
-            </li>
-            {% else%}
-            <li class="page-item disabled">
-                <a class="page-link" href="#" tabindex="-1">Previous</a>
-            </li>
-            {% endif%}
-
-
-            {% for i in items.paginator.page_range%}
-            {% if items.number == i %}
-            <li class="page-item active"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
-            {% else%}
-            <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
-            {% endif%}
-            {% endfor%}
-
-
-            {%if items.has_next%}
-            <li class="page-item">
-                <a class="page-link" href="?page={{items.next_page_number}}">Next</a>
-            </li>
-            {% else %}
-            <li class="page-item disabled">
-                <a class="page-link" href="">Next</a>
-            </li>
-            {%endif%}
-        </ul>
-        {% endif%}
-    </nav>
 </div>
 
 {% endblock %}}

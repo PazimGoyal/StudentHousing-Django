@@ -25,12 +25,13 @@
                 <a class="nav-link {% ifequal request.path '/listings/'%} active {% endifequal%}" href="/listings">Listings</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link  {% ifequal request.path '/addListing/'%} active {% endifequal%}"          href="/addListing">Post for Free</a>
+                <a class="nav-link  {% ifequal request.path '/addListing/'%} active {% endifequal%}" href="/addListing">Post
+                    for Free</a>
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-           <i class="fas fa-heart"></i> </li>
+                <i class="fas fa-heart"></i></li>
 
             <li class="nav-item dropdown active">
                 <a class="nav-link account" data-toggle="dropdown" id="navbarDropdown">
@@ -62,21 +63,24 @@
 
 
 {% block content%}{%endblock%}
+
 <footer class="page-footer">
-    <div class="top-footer">
-        <div>
+<div class="container">
+
+    <div class="top-footer row row-cols-lg-3 row-cols-1">
+        <div class="footer-item">
             <div class="footer-logo"><i class="fas fa-phone fa-2x"></i></div>
             <div class="footer-text-title">Contact Us</div>
             <div class="footer-text">Phone: +1-4389793788 <br>Email : pazimgoyal@gmail.com</div>
 
         </div>
-        <div>
+        <div class="footer-item">
             <div class="footer-logo"><i class="fas fa-map-marked-alt fa-2x"></i></div>
             <div class="footer-text-title">Find Us</div>
-            <div class="footer-text">9091, Rue de Godbout<br>Lasalle<br>Montreal<br>H8R 2H7</div>
+            <div class="footer-text">9091, Rue de Godbout<br>Lasalle , Montreal<br>H8R 2H7</div>
 
         </div>
-        <div>
+        <div class="footer-item">
             <div class="footer-logo"><i class="fas fa-thumbs-up fa-2x"></i></div>
             <div class="footer-text-title">Social Media</div>
             <div class="footer-text"><i class="fab fa-facebook"> Facebook</i>
@@ -93,6 +97,7 @@
             </div>
         </div>
     </div>
+</div>
     <div class="row bottom-footer">
         <div class="col-lg-4"></div>
         <div class="col-lg-4"><i class="far fa-copyright"></i> Pazimgoyal.com .</div>

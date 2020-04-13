@@ -9,5 +9,7 @@ urlpatterns = [
     path('listings/<int:request_id>', views.single_listing, name='id'),
     path('listings/', views.listings, name='listings'),
     path('email/', views.mail_sending, name='email'),
+    path('edit/<int:request_id>', views.edit_listing, name='edit'),
+    path('delete/<int:request_id>', views.delete_listing, name='delete'),
 
 ]

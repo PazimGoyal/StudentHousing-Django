@@ -9,7 +9,7 @@
 <div class="row">
     <div class="col-lg-1"></div>
     <div class="col-lg-7">
-        <div class="title">{{listing.title|title}}</div>
+        <div class="title"><div>{{listing.title|title}}</div><div><a href="#" id="likePost"><i class="far fa-heart"></i></a> </div> </div>
 
 
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -119,19 +119,14 @@
                 <input type="text" placeholder="Name" name="name">
                 <input type="text" placeholder="your Email" name="email">
                 {%endif%}
-
-
                 <!--
                                 <input type="hidden" name="current_path" value="{{request.path}}">
                 -->
-
                 <input type="hidden" value="{{listing.user.email}}" name="listing_by">
                 <input type="hidden" value="{{request.path}}" name="listing_url">
                 <input type="text" placeholder="mobile (OPTIONAL)" name="phone">
                 <textarea placeholder="ASK?" rows="6" name="description">Hi I am Interested</textarea>
                 <input type="submit" value="SEND"></input>
-
-
             </form>
 
 
@@ -139,6 +134,17 @@
 
     </div>
 </div>
-
+</div>
 
 {%endblock%}
+<script>
+
+    $(#likePost).click(function(event){
+   event.preventDefault(); // prevent default behavior of link click
+   $.post('server_side_file.php', {parameter : some_value}, function(response){
+      //now you've got `response` from server, play with it like
+      alert(response);
+   });
+});
+
+</script>

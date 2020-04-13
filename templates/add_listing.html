@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% block title %} | New Listing{% endblock%}
 {% block content %}
-
 <div class="newAds container">
+
     <form method="POST" enctype="multipart/form-data"> {% csrf_token%}
         {% if messages %}
         {% for message in messages %}
@@ -22,55 +22,64 @@
 
             <div class="new_upload_card container">
                 <div class="card-heading">Basic Details</div>
-                <input type="text" name="title" placeholder="Title (keep it short and sweet) *" required>
-                <textarea name="description" placeholder="Your Description Please:-" rows="6"></textarea>
+                <input type="text" name="title" placeholder="Title (keep it short and sweet) *" value="{{listing.title}}" required>
+                <textarea name="description" placeholder="Your Description Please:-" rows="6"  value="{{listing.description}}">{{listing.description}}</textarea>
                 <a href="#card2">
                     <button type="button" class="new_upload_button"><i class="material-icons">keyboard_capslock
                     </i></button>
                 </a>
             </div>
-            <div class="new_upload_card container">
+            <div class="new_upload_card container" id="card2">
                 <div class="card-heading">Other Details</div>
                 <div class="row row-cols-3">
                     <div class="col-lg-4">
-                        <input type="text" name="price" placeholder="Price / Month  *" required>
+                        <input type="text" name="price" placeholder="Price / Month  *" required  value="{{listing.price}}">
                     </div>
                     <div class="col-4">
-                        <input type="number" step="0.5" name="size" class="input-form-txt" placeholder="size (3.5 , 5.5)" max="20" min="0.5">
+                        <input type="number" step="0.5" name="size" class="input-form-txt" placeholder="size (3.5 , 5.5)" max="20" min="0.5"  value="{{listing.size}}">
                     </div>
                     <div class="col-4">
-                        <input type="number" step="0.5" name="bathroom" class="input-form-txt" placeholder="Bathrooms (1, 1.5)" max="20" min="1">
+                        <input type="number" step="0.5" name="bathroom" class="input-form-txt" placeholder="Bathrooms (1, 1.5)" max="20" min="1"   value="{{listing.bathrooms}}">
                     </div>
 
 
                     <div class="col-4">
                         <select class="input-form-dpd" name="space_given">
-                            <option value="NOT AVAILABLE">Space Type</option>
+                            {% for i,j in s.items %}
+                        <option value="{{i}}" {%if i == listing.space_given %} selected {%endif%}>{{j}}</option>
+                        {%endfor%}
+
+                            <!--    <option value="NOT AVAILABLE">Space Type</option>
                             <option value="Private Bedroom">Private Bedroom</option>
                             <option value="Shared Bedroom">Shared Bedroom</option>
                             <option value="Entire Place">Whole Apartment/House</option>
-                        </select></div>
+                       --> </select></div>
 
                     <div class="col-4">
                         <select class="input-form-dpd" name="building_type">
+    {% for i,j in b.items %}
+                        <option value="{{i}}" {%if i == listing.building_type %} selected {%endif%}>{{j}}</option>
+                        {%endfor%}
+
+                            <!--
                             <option value="NOT AVAILABLE">BUILDING TYPE</option>
                             <option value="Apartment Building">Apartment Building</option>
                             <option value="House">House</option>
                             <option value="Basement">Basement</option>
+-->
                         </select></div>
 
 
                     <div class="col-4">
                         <select class="input-form-dpd" name="furnished">
-                            <option value="NOT AVAILABLE">Furniture</option>
-                            <option value="Fully Furnished">Fully Furnished</option>
-                            <option value="Semi Furnished">Semi Furnished</option>
-                            <option value="Not Furnished">Not Furnished</option>
+    {% for i,j in f.items %}
+                        <option value="{{i}}" {%if i == listing.furnished %} selected {%endif%}>{{j}}</option>
+                        {%endfor%}
                         </select></div>
 
                     <div class="col-3">
                         <div class=" custom-checkbox input-form-cb">
-                            <input type="checkbox" class="custom-control-input" id="Garage" name="garage">
+                            <input type="checkbox" class="custom-control-input" id="Garage" name="garage" {%if listing.garage%}checked{%endif%}>
                             <label class="custom-control-label" for="Garage">Garage/Parking</label>
                         </div>
                     </div>
@@ -98,33 +107,29 @@
             </div>
             <div class="new_upload_card container">
                 <div class="card-heading">Address Details</div>
-                <input type="text" name="address" placeholder="Your Address *" required>
-
+                <input type="text" name="address" placeholder="Your Address *" required   value="{{listing.address}}">
                 <div class="row row-cols-3">
                     <div class="col-4">
                         <select class="input-form-dpd" name="city">
-                            <option value="Montreal">Montreal</option>
-                            <option value="Toronto">Toronto</option>
-                        </select>
+     {% for i,j in c.items %}
+                        <option value="{{i}}" {%if i == listing.city %} selected {%endif%}>{{j}}</option>
+                        {%endfor%}
+                       </select>
                     </div>
 
                     <div class="col-4">
-                        <input type="text" name="zipCode" placeholder="ZIP CODE  (A1A1A1) *" required>
+                        <input type="text" name="zipCode" placeholder="ZIP CODE  (A1A1A1) *" required   value="{{listing.zipCode}}">
                     </div>
 
                 </div>
-
-
-                <a href="#card2">
+                <a href="#card4">
                     <button type="button" class="new_upload_button"><i class="material-icons">keyboard_capslock
                     </i></button>
                 </a>
             </div>
-
-
-            <div class="new_upload_card" id="card2">
+            <div class="new_upload_card" id="card4">
                 <div class="images row row-cols-xl-4 ">
-                    <input name="image1" type="file" accept="image/*">
+                    <input name="image1" type="file" accept="image/*" >
                     <input name="image2" type="file" accept="image/*">
                     <input name="image3" type="file" accept="image/*">
                     <input name="image4" type="file" accept="image/*">
