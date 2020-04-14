@@ -21,21 +21,23 @@
 </div>
 <div class="row dashboard">
     <div class="col-lg-2 left_pannel">
-        <div class="infoUser container">
-            <img src="{{userinfo.photo.url}}" class="userPic">
 
+        <div class="infoUser container requestDetails">
+            <img src="{{userinfo.photo.url}}" class="userPic">
             <div class="head">Welcome {{user.first_name}} {{user.last_name}}</div>
-            <i class="material-icons">create</i>
             <div>{{user.email}}</div>
             <div>{{userinfo.phone}}</div>
             <div>{{user.username}}</div>
-            <div>{{userinfo.zip}}</div>
-            <div>{{user.city}}</div>
-
+            <div>{{userinfo.zipCode}}</div>
+            <div>{{userinfo.city}}</div>
         </div>
+
     </div>
 
-    <div class="col-lg-7 center_pannel">
+    <div class="col-lg-5 center_pannel">
+
+
+
         {% if items%}
         {% for item in items%}
         <div class="card">
@@ -51,7 +53,7 @@
                 </div>
                 <div class="col-md-2 container row row-cols-lg-1 row-cols-3">
                     <a href="/edit/{{item.id}}" class="button m-lg-2"><i class="fas fa-edit"></i> Edit</a>
-                    <a href="/delete/{{item.id}}" id="deleteItem" class="button m-lg-2"><i class="fas fa-trash"></i> Delete</a>
+                    <a href="/delete/{{item.id}} " id="deleteItem" class="button m-lg-2"><i class="fas fa-trash"></i> Delete</a>
                     <a href="/listings/{{item.id}}" class="button m-lg-2"><i class="fas fa-eye"></i> View</a>
 
                 </div>

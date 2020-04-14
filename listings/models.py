@@ -1,6 +1,9 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils import timezone
+from io import BytesIO
+from PIL import Image
+from django.core.files import File
 
 space = (('NOT AVAILABLE', 'NOT AVAILABLE'),
          ('Shared Bedroom', 'Shared Bedroom'), ('Private Bedroom', 'Private Bedroom'),
@@ -10,6 +13,13 @@ city = (('Montreal', 'Montreal'), ('Toronto', 'Toronto'))
 furnish = (('NOT AVAILABLE', 'NOT AVAILABLE'),
 ('Not Furnished', 'NOT FURNISHED'), ('Fully Furnished', 'FULLY FURNISHED'), ('Semi Furnished', 'SEMI-FURNISHED'))
 
+
+def compress(image):
+    im = Image.open(image)
+    im_io = BytesIO()
+    im.save(im_io, 'JPEG', quality=60)
+    new_image = File(im_io, name=image.name)
+    return new_image
 
 class HouseListings(models.Model):
     title = models.CharField(max_length=200)
@@ -43,3 +53,4 @@ class HouseListings(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     size = models.DecimalField(blank=True, decimal_places=1, max_digits=2, default=3.5)
     bathrooms = models.DecimalField(blank=True, decimal_places=1, max_digits=2, default=2)
+

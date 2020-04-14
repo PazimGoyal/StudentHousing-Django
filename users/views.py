@@ -1,11 +1,12 @@
 from django.contrib import messages, auth
 from django.contrib.auth import logout
 from django.contrib.auth.models import User
+from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 
 from listings.models import HouseListings
 from .forms import myForm
-from .models import UserModel
+from .models import UserModel,LikedListings
 
 
 # Create your views here.
@@ -54,7 +55,7 @@ def dashboard(request):
         myobject2 = get_object_or_404(UserModel,user=request.user)
         return render(request, 'dashboard.html', {'items': myobject, 'userinfo': myobject2})
     else:
-        messages.info(request, "You need to login First")
+        messages.info(request, "You need to Login First")
         return redirect('login')
 
 
@@ -91,3 +92,21 @@ def register(request):
         form = User()
         form2 = myForm()
     return render(request, 'register.html', {'form': form, 'form2': form2})
+
+def likes(request):
+    id=int(request.GET['listing'])
+    print(1)
+    listing = get_object_or_404(HouseListings, pk=id)
+    print(2)
+    obj=LikedListings.objects.filter(user=request.user,advertisement=listing)
+    print(3)
+    print(obj)
+    print(4)
+    if obj:
+        obj.delete()
+        print("DELETED")
+    else:
+        print("CREATED")
+        record=LikedListings(user=request.user,advertisement=listing)
+        record.save()
+    return HttpResponse("")

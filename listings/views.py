@@ -3,12 +3,13 @@ from decimal import Decimal
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.core.paginator import Paginator
+from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 
 from listings.choices import space_type_c, city_c, order_c, building_type_c, furnished_c
 from .forms import SaveData
 from .models import HouseListings
-
+from users.models import LikedListings
 
 # Create your views here.
 def index(request):
@@ -91,7 +92,14 @@ def listings(request):
 
 
 def single_listing(request, request_id):
+    currentuserliked =False
     listin = get_object_or_404(HouseListings, pk=request_id)
+
+    if request.user.is_authenticated:
+        liked=LikedListings.objects.filter(user=request.user).filter(advertisement=listin)
+        if liked:
+            currentuserliked=True
+
     abc = [listin.image1, listin.image2, listin.image3, listin.image4, listin.image5, listin.image6, listin.image7,
            listin.image8, listin.image9, listin.image10, listin.image11, listin.image12]
     count = 0
@@ -99,7 +107,7 @@ def single_listing(request, request_id):
     for i in abc:
         if i:
             img.append(i.url)
-    return render(request, 'single_listing.html', {'listing': listin, 'image': img})
+    return render(request, 'single_listing.html', {'listing': listin, 'image': img,'likes':currentuserliked})
 
 
 def add_item(request):
@@ -126,26 +134,30 @@ def add_item(request):
 
 
 def mail_sending(request):
-    if request.POST:
-        data = request.POST
-        print("--------------------------------------------------------------")
-        print(data)
-        print("--------------------------------------------------------------")
-        description = """This mail is regarding your ad. on studentHousing.com 
+    if request.user.is_authenticated:
+        if request.POST:
+            data = request.POST
+            print("--------------------------------------------------------------")
+            print(data)
+            print("--------------------------------------------------------------")
+            description = """This mail is regarding your ad. on studentHousing.com 
 view your ad. here :""" + "http://10.0.0.81:8000" + data['listing_url'] + """   
-
+    
 """ + "Requested by:- " + request.user.first_name + " " + request.user.last_name + "\n" + data['phone'] + "\n" + data[
-            'description'] + """
-
+'description'] + """
+    
 You can reply to user using website chatting service or directly reply at """ + request.user.email + """   
 Thankyou for using StudentHousing.com"""
-        send = send_mail('no-reply - student housing your ad. ', description, data['email'], [data['listing_by'], ])
-        if send:
-            messages.success(request, "Mail Sent Successfully")
-        else:
-            messages.error(request, "Fail to send mail")
-        new_url = data['listing_url']
-    return redirect(new_url)
+            send = send_mail('no-reply - student housing your ad. ', description, data['email'], [data['listing_by'], ])
+            if send:
+                messages.success(request, "Mail Sent Successfully")
+            else:
+                messages.error(request, "Fail to send mail")
+            new_url = data['listing_url']
+        return redirect(new_url)
+    else:
+        messages.info(request, "You need to Login First")
+        return redirect('login')
 
 
 def edit_listing(request, request_id):
@@ -174,5 +186,9 @@ def edit_listing(request, request_id):
 
 def delete_listing(request,request_id):
     listing = get_object_or_404(HouseListings, pk=request_id)
-    listing.delete()
-    return redirect('dashboard')
+    if request.user.is_authenticated and (listing.user==request.user):
+        listing = get_object_or_404(HouseListings, pk=request_id)
+        listing.delete()
+        return redirect('dashboard')
+    else:
+        return HttpResponse("ERROR 505")
