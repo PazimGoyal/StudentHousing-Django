@@ -542,7 +542,11 @@ min-height: 70vh;
 
 
 .dashboard2 .left-dash{
+    padding: 100px 10px;
     margin-top: 100px;
+box-shadow: 1px 1px 10px 1px #4e555b;
+    background: #fff;
+height: 100%;
 }
 .dashboard2 .right-dash{
 }

@@ -1,8 +1,10 @@
 from django.contrib.auth.models import User
+from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.db import models
 from django.utils import timezone
 from io import BytesIO
 from PIL import Image
+import sys
 from django.core.files import File
 
 space = (('NOT AVAILABLE', 'NOT AVAILABLE'),
@@ -53,4 +55,21 @@ class HouseListings(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     size = models.DecimalField(blank=True, decimal_places=1, max_digits=2, default=3.5)
     bathrooms = models.DecimalField(blank=True, decimal_places=1, max_digits=2, default=2)
+
+    def save(self, *args, **kwargs):
+        #if not self.id:
+        self.image1 = self.compressImage(self.image1)
+        print("hiiiiiiiiiiiiiiiiiiiiii")
+        super(HouseListings, self).save(*args, **kwargs)
+
+    def compressImage(self, uploadedImage):
+        imageTemproary = Image.open(uploadedImage)
+        outputIoStream = BytesIO()
+        imageTemproaryResized = imageTemproary.resize((300, 200))
+        imageTemproaryResized.save(outputIoStream, format='JPEG', quality=60)
+        outputIoStream.seek(0)
+        uploadedImage = InMemoryUploadedFile(outputIoStream, 'ImageField', "%s.jpg" % uploadedImage.name.split('.')[0],
+                                             'image/jpeg', sys.getsizeof(outputIoStream), None)
+
+        return uploadedImage
 

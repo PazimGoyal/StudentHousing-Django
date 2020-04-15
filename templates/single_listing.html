@@ -137,10 +137,9 @@
                 <form action="{%url 'email'%}" method="POST">{%csrf_token%}
 
                     {% if user.is_authenticated%}
-                    <input type="text" placeholder="Name" value="{{user.first_name}} {{user.last_name}}" disabled
+                    <input type="text" placeholder="Name" value="{{user.first_name}} {{user.last_name}}"
                            name="name">
-                    <input type="text" placeholder="your Email" value="{{user.email}}" name="email" disabled>
-
+                    <input type="text" placeholder="your Email" value="{{user.email}}" name="email">
                     {%else%}
                     <input type="text" placeholder="Name" name="name">
                     <input type="text" placeholder="your Email" name="email">
@@ -165,7 +164,7 @@
                 <input type="text" placeholder="Name" value="{{listing.user.first_name}} {{listing.user.last_name}}"
                        disabled>
                 <input type="text" placeholder="your Email" value="{{listing.user.email}}"  disabled>
-                <input type="text" placeholder="your Email" value="438-XXX-XXX"  disabled>
+                <input type="text" placeholder="Phone" value="438-XXX-XXX"  disabled>
             </div>
 
         </div>
