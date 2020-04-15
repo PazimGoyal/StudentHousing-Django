@@ -65,7 +65,7 @@ class HouseListings(models.Model):
     def compressImage(self, uploadedImage):
         imageTemproary = Image.open(uploadedImage)
         outputIoStream = BytesIO()
-        imageTemproaryResized = imageTemproary.resize((300, 200))
+        imageTemproaryResized = imageTemproary.resize((1280, 720))
         imageTemproaryResized.save(outputIoStream, format='JPEG', quality=60)
         outputIoStream.seek(0)
         uploadedImage = InMemoryUploadedFile(outputIoStream, 'ImageField', "%s.jpg" % uploadedImage.name.split('.')[0],
