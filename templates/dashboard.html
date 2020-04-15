@@ -2,6 +2,145 @@
 {% block title %} | User Dashboard{% endblock%}
 {% block content %}
 {% load humanize%}
+<div class="dashboard2">
+    <div class="row">
+        <div class="col-3 left-dash">
+            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab"
+                   aria-controls="v-pills-home" aria-selected="true">My Profile</a>
+                <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab"
+                   aria-controls="v-pills-profile" aria-selected="false">My Listings</a>
+                <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab"
+                   aria-controls="v-pills-messages" aria-selected="false">My Messages</a>
+                <!--
+                                <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab"
+                                   aria-controls="v-pills-settings" aria-selected="false">Settings</a>
+                -->
+            </div>
+        </div>
+        <div class="col-9 right-dash">
+            <div class="tab-content" id="v-pills-tabContent">
+                <div class="tab-pane fade show active left_pannel" id="v-pills-home" role="tabpanel"
+                     aria-labelledby="v-pills-home-tab">
+                    <div class="infoUser container requestDetails">
+                        <img src="{{userinfo.photo.url}}" class="userPic">
+                        <div class="userInfo">
+                            <div>Name {{user.first_name}} {{user.last_name}}</div>
+                            <div>Email : {{user.email}}</div>
+                            <div>Phone : {{userinfo.phone}}</div>
+                            <div>User Name : {{user.username}}</div>
+                            <div>Zip Code : {{userinfo.city}}</div>
+                            <div>City : {{userinfo.zipCode}}</div>
+
+                            <div>Total Ads till date : </div>
+                            <div>Joined on : {{user.date_joined|naturaltime|naturalday}} </div>
+
+                        </div>
+                        <div><a href="#"><i class="fas fa-edit"></i> </a></div>
+                    </div>
+
+                </div>
+                <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-1 main-listing" style="padding: 30px;">
+
+                        {% if items%}
+                        {% for item in items%}
+
+                        <div class="col listings" style="margin-bottom: 15px;">
+
+                            <div class="card">
+                                <div class="card-img ">
+                                    <img class="img-responsive" src="{{item.image1.url}}">
+                                </div>
+                                <div class="card-body">
+                                    <div class="card-title">
+                                        <h5 class="text-danger">{{item.title|truncatewords:5}}</h5>
+                                        <h6>$ {{item.price|intword|intcomma}} / Month</h6>
+                                        <div class="smallerItems row row-cols-2">
+                                            <div class="col info_item"><i class="fa  fa-wifi "></i>
+                                                {{item.wifiIncluded|yesno:"Yes,No"}}
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="card-footer">
+                                    <div class="d-flex justify-content-around">
+                                        <div>
+                                            <a type="button" class="btn btn-outline-danger btn-sm" href="{{item.id}}">Read
+                                                More</a>
+                                        </div>
+                                        <div>
+                                            <a type="button" class="btn btn-outline-danger btn-sm" href="{{item.id}}">Read
+                                                More</a>
+                                        </div>
+                                        <div>
+                                            <a type="button" class="btn btn-outline-danger btn-sm" href="{{item.id}}">Read
+                                                More</a>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {%endfor%}
+                        {%else%}
+                        <center><h3>No results found for search parameters</h3></center>
+                        {%endif%}
+                    </div>
+                    <nav aria-label="Page navigation example">
+                        {% if items.has_other_pages%}
+                        <ul class="pagination justify-content-center">
+
+                            {%if items.has_previous%}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{items.previous_page_number}}"
+                                   tabindex="-1">Previous</a>
+                            </li>
+                            {% else%}
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1">Previous</a>
+                            </li>
+                            {% endif%}
+
+
+                            {% for i in items.paginator.page_range%}
+                            {% if items.number == i %}
+                            <li class="page-item active"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+                            {% else%}
+                            <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+                            {% endif%}
+                            {% endfor%}
+
+
+                            {%if items.has_next%}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{items.next_page_number}}">Next</a>
+                            </li>
+                            {% else %}
+                            <li class="page-item disabled">
+                                <a class="page-link" href="">Next</a>
+                            </li>
+                            {%endif%}
+                        </ul>
+                        {% endif%}
+                    </nav>
+
+
+                </div>
+                <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                    ...
+                </div>
+                <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                    ...
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--
 <div class="container">
     {% if messages %}
     {% for message in messages %}
@@ -44,10 +183,11 @@
             <div class="row ">
                 <div class="col-md-4">
                     <img src="{{item.image1.url}}" class="w-100">
+                </div>
                     <div class="col-md-6 px-3">
                     <div class="card-block px-3">
-                        <h4 class="card-title">{{item.title}}</h4>
-                        <p class="card-text">{{item.description}} </p>
+                        <h4 class="card-title">{{item.title|title}}</h4>
+                        <h5>{{item.created_date}}</h5>
                     </div>
                 </div>
                 <div class="col-md-2 container row row-cols-lg-1 row-cols-3">
@@ -57,7 +197,7 @@
 
                 </div>
 
-            </div>
+        </div>
         </div>
         {%endfor%}
         {%else%}
@@ -102,4 +242,5 @@
     </div>
     <div class="col-lg-3 right_pannel"></div>
 </div>
+-->
 {%endblock%}
