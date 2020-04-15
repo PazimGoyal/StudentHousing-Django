@@ -474,9 +474,10 @@ transition: background 2s;
 }
 
 
-.headingIndex {
+.featuredListings{
     width: 100%;
     text-align: center;
+    color: #b71921;
     text-shadow: 1px 1px 1px #fff, 2px 2px 2px #000;
 }
 
