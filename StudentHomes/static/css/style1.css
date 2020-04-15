@@ -49,11 +49,11 @@ body {
 }
 
 .top-footer {
-    /*
-    padding-top: 40px;
-    display: flex;
-    justify-content: space-around;
-    */
+
+
+}
+.top-footer{
+    margin-top: 40px;
 }
 
 .top-footer .footer-logo {
@@ -721,3 +721,5 @@ min-height: 70vh;
 #liked{
     display: none;
 }
+
+
