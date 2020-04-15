@@ -32,8 +32,8 @@
                             <div>Zip Code : {{userinfo.city}}</div>
                             <div>City : {{userinfo.zipCode}}</div>
 
-                            <div>Total Ads till date : </div>
-                            <div>Joined on : {{user.date_joined|naturaltime|naturalday}} </div>
+                            <div>Total Ads till date :</div>
+                            <div>Joined on : {{user.date_joined|naturaltime|naturalday}}</div>
 
                         </div>
                         <div><a href="#"><i class="fas fa-edit"></i> </a></div>
@@ -68,17 +68,17 @@
                                 <div class="card-footer">
                                     <div class="d-flex justify-content-around">
                                         <div>
-                                            <a type="button" class="btn btn-outline-danger btn-sm" href="{{item.id}}">Read
-                                                More</a>
+                                            <a type="button" class="btn btn-outline-danger btn-sm"
+                                               href="/edit/{{item.id}}"><i class="fas fa-edit"></i> Edit</a>
                                         </div>
                                         <div>
-                                            <a type="button" class="btn btn-outline-danger btn-sm" href="{{item.id}}">Read
-                                                More</a>
-                                        </div>
+                                            <a type="button" class="btn btn-outline-danger btn-sm"
+                                               href="/delete/{{item.id}} "><i class="fas fa-trash"></i> Delete</a></div>
                                         <div>
-                                            <a type="button" class="btn btn-outline-danger btn-sm" href="{{item.id}}">Read
-                                                More</a>
+                                            <a type="button" class="btn btn-outline-danger btn-sm"
+                                               href="/listings/{{item.id}}"><i class="fas fa-eye"></i> View</a>
                                         </div>
+
 
 
                                     </div>
