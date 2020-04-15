@@ -73,17 +73,19 @@
             <a href="{{i}}" data-lightbox="{{listing.id}}" class="col img-thumb"><img
                     src="{{i}}" height="100%;"></a>
             {%endfor%}
-<!--
-            <a href="{{i}}" data-lightbox="{{listing.id}}" class="col img-thumb tot">
-                {{image|length}} +</i>
-            </a>
--->
+            <!--
+                        <a href="{{i}}" data-lightbox="{{listing.id}}" class="col img-thumb tot">
+                            {{image|length}} +</i>
+                        </a>
+            -->
         </div>
         {%endif%}
 
         <div class="price_address">
-            <div class="item"><i class="fas fa-hand-holding-usd"></i>&nbsp;{{listing.price|intword|intcomma}} /Month</div>
-            <div class="item"><i class="fas fa-map-marker-alt"></i>&nbsp;{{listing.address}}, {{listing.city}} {{listing.zipCode}}, Canada
+            <div class="item"><i class="fas fa-hand-holding-usd"></i>&nbsp;{{listing.price|intword|intcomma}} /Month
+            </div>
+            <div class="item"><i class="fas fa-map-marker-alt"></i>&nbsp;{{listing.address}}, {{listing.city}}
+                {{listing.zipCode}}, Canada
             </div>
         </div>
 
@@ -110,10 +112,10 @@
     <div class="col-lg-1"></div>
     <div class="col-lg-3 right-side-area">
         <div class="requestDetails share">
-            <i class="fab fa-facebook"></i>
-            <i class="fab fa-instagram"></i>
-            <i class="fab fa-google-plus-g"></i>
-            <i class="fab fa-twitter"></i>
+            <a href=""> <i class="fab fa-facebook"></i></a>
+            <a href=""> <i class="fab fa-instagram"></i></a>
+            <a href=""> <i class="fab fa-google-plus-g"></i></a>
+            <a href=""> <i class="fab fa-twitter"></i></a>
 
         </div>
         <div class="requestDetails">
