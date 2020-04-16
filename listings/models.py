@@ -59,7 +59,6 @@ class HouseListings(models.Model):
     def save(self, *args, **kwargs):
         #if not self.id:
         self.image1 = self.compressImage(self.image1)
-        print("hiiiiiiiiiiiiiiiiiiiiii")
         super(HouseListings, self).save(*args, **kwargs)
 
     def compressImage(self, uploadedImage):

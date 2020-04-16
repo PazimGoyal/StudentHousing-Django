@@ -27,14 +27,14 @@
         </div>
 
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
+          <!--  <ol class="carousel-indicators">
                 {% if image|length > 1%}
                 {% for i in image %}
                 <li data-target="#carouselExampleIndicators" data-slide-to="{{forloop.counter0}}"></li>
                 {%endfor%}
                 {%endif%}
             </ol>
-            <div class="carousel-inner" role="listbox"
+          -->  <div class="carousel-inner" role="listbox"
                  style=" width:100%; height: 500px !important; background-color: #1d2124; color: #fff;">
 
                 <div class="carousel-item active single_images">
@@ -64,115 +64,156 @@
             {%endif%}
 
         </div>
-        {% if image|length > 1%}
 
 
-        <div class="row row-cols-5" style="margin-top: 10px; height: 100px;">
-            {% for i in image|slice:'5'%}
-
-            <a href="{{i}}" data-lightbox="{{listing.id}}" class="col img-thumb"><img
-                    src="{{i}}" height="100%;"></a>
-            {%endfor%}
-            <!--
-                        <a href="{{i}}" data-lightbox="{{listing.id}}" class="col img-thumb tot">
-                            {{image|length}} +</i>
-                        </a>
-            -->
-        </div>
-        {%endif%}
-
-        <div class="price_address">
-            <div class="item"><i class="fas fa-hand-holding-usd"></i>&nbsp;{{listing.price|intword|intcomma}} /Month
-            </div>
-            <div class="item"><i class="fas fa-map-marker-alt"></i>&nbsp;{{listing.address}}, {{listing.city}}
-                {{listing.zipCode}}, Canada
-            </div>
-        </div>
-
-        <div class="itemall ">
-            <div class="item"><i class="fas fa-calendar-day"></i> Posted Time :
-                {{listing.created_date|naturaltime|naturalday}}
-            </div>
-            <div class="item"><i class="fas fa-home"></i> Place Type : {{listing.building_type}}</div>
-            <div class="item"><i class="fas fa-parking"></i> Parking : {{listing.garage}}</div>
-            <div class="item"><i class="fas fa-home"></i> SPACE TYPE : {{listing.space_given}}</div>
-            <div class="item"><i class="fas fa-bath"></i> Size : {{listing.size}}</div>
-            <div class="item"><i class="fas fa-bath"></i> bathrooms : {{listing.bathrooms}}</div>
-            <div class="item"><i class="fas fa-dog"></i> animalsAllowed : {{listing.animalsAllowed}}</div>
-            <div class="item"><i class="fas fa-bolt"></i> electricityIncluded : {{listing.electricityIncluded}}</div>
-            <div class="item"><i class="fas fa-wifi"></i> wifiIncluded : {{listing.wifiIncluded}}</div>
-            <div class="item"><i class="fas fa-couch"></i> furnished : {{listing.furnished}}</div>
-        </div>
-        <div class="discr"><h3>Description</h3>
-            <hr>
-            <br> {{listing.description}}
-        </div>
-
-    </div>
-    <div class="col-lg-1"></div>
-    <div class="col-lg-3 right-side-area">
-        <div class="requestDetails share">
-            <a href=""> <i class="fab fa-facebook"></i></a>
-            <a href=""> <i class="fab fa-instagram"></i></a>
-            <a href=""> <i class="fab fa-google-plus-g"></i></a>
-            <a href=""> <i class="fab fa-twitter"></i></a>
-
-        </div>
-        <div class="requestDetails">
-            {% if messages %}
-            {% for message in messages %}
-            {% if message.tags %}
-            <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
-                {%else%}
-                <div class="alert alert-alert alert-dismissible fade show" role="alert">
-                    {% endif %}
-                    <strong>{{ message }}</strong>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+        <div id="thumbnailCarousel" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="row column thumbrow">
+                        <div class="col-3"><img src="{{listing.image1.url }}" class="" alt="..." data-target="#carouselExampleIndicators" data-slide-to="0">
+                        </div>
+                        <div class="col-3"><img src="{{listing.image2.url }}" class="d-block w-100" alt="..." data-target="#carouselExampleIndicators" data-slide-to="1">
+                        </div>
+                        <div class="col-3"><img src="{{listing.image3.url }}" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="col-3"><img src="{{listing.image4.url }}" class="d-block w-100" alt="...">
+                        </div>
+                    </div>
                 </div>
-                {% endfor %}
-                {% endif %}
-
-                <form action="{%url 'email'%}" method="POST">{%csrf_token%}
-
-                    {% if user.is_authenticated%}
-                    <input type="text" placeholder="Name" value="{{user.first_name}} {{user.last_name}}"
-                           name="name">
-                    <input type="text" placeholder="your Email" value="{{user.email}}" name="email">
-                    {%else%}
-                    <input type="text" placeholder="Name" name="name">
-                    <input type="text" placeholder="your Email" name="email">
-                    {%endif%}
-                    <!--
-                                    <input type="hidden" name="current_path" value="{{request.path}}">
-                    -->
-                    <input type="hidden" value="{{listing.user.email}}" name="listing_by">
-                    <input type="hidden" value="{{request.path}}" name="listing_url">
-                    <input type="text" placeholder="mobile (OPTIONAL)" name="phone">
-                    <textarea placeholder="ASK?" rows="6" name="description">Hi I am Interested</textarea>
-                    <input type="submit" value="SEND"></input>
-                </form>
-
-
+                <div class="carousel-item thumbrow">
+                    <div class="row column">
+                        <div class="col-3"><img src="{{listing.image5.url }}" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="col-3"><img src="{{listing.image6.url }}" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="col-3"><img src="{{listing.image7.url }}" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="col-3"><img src="{{listing.image8.url }}" class="d-block w-100" alt="...">
+                        </div>
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#thumbnailCarousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true" ></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#thumbnailCarousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
             </div>
 
 
+            <!--{% if image|length > 1%}
+
+            <div class="row row-cols-5" style="margin-top: 10px; height: 100px;">
+                {% for i in image|slice:'5'%}
+
+                <a href="{{i}}" data-lightbox="{{listing.id}}" class="col img-thumb"><img
+                        src="{{i}}" height="100%;"></a>
+                {%endfor%}
+                &lt;!&ndash;
+                            <a href="{{i}}" data-lightbox="{{listing.id}}" class="col img-thumb tot">
+                                {{image|length}} +</i>
+                            </a>
+                &ndash;&gt;
+            </div>
+            {%endif%}
+    -->
+
+
+            <div class="price_address">
+                <div class="item"><i class="fas fa-hand-holding-usd"></i>&nbsp;{{listing.price|intword|intcomma}} /Month
+                </div>
+                <div class="item"><i class="fas fa-map-marker-alt"></i>&nbsp;{{listing.address}}, {{listing.city}}
+                    {{listing.zipCode}}, Canada
+                </div>
+            </div>
+
+            <div class="itemall ">
+                <div class="item"><i class="fas fa-calendar-day"></i> Posted Time :
+                    {{listing.created_date|naturaltime|naturalday}}
+                </div>
+                <div class="item"><i class="fas fa-home"></i> Place Type : {{listing.building_type}}</div>
+                <div class="item"><i class="fas fa-parking"></i> Parking : {{listing.garage}}</div>
+                <div class="item"><i class="fas fa-home"></i> SPACE TYPE : {{listing.space_given}}</div>
+                <div class="item"><i class="fas fa-bath"></i> Size : {{listing.size}}</div>
+                <div class="item"><i class="fas fa-bath"></i> bathrooms : {{listing.bathrooms}}</div>
+                <div class="item"><i class="fas fa-dog"></i> animalsAllowed : {{listing.animalsAllowed}}</div>
+                <div class="item"><i class="fas fa-bolt"></i> electricityIncluded : {{listing.electricityIncluded}}
+                </div>
+                <div class="item"><i class="fas fa-wifi"></i> wifiIncluded : {{listing.wifiIncluded}}</div>
+                <div class="item"><i class="fas fa-couch"></i> furnished : {{listing.furnished}}</div>
+            </div>
+            <div class="discr"><h3>Description</h3>
+                <hr>
+                <br> {{listing.description}}
+            </div>
+
+        </div>
+    </div>
+        <div class="col-lg-1"></div>
+        <div class="col-lg-3 right-side-area">
+            <div class="requestDetails share">
+                <a href=""> <i class="fab fa-facebook"></i></a>
+                <a href=""> <i class="fab fa-instagram"></i></a>
+                <a href=""> <i class="fab fa-google-plus-g"></i></a>
+                <a href=""> <i class="fab fa-twitter"></i></a>
+
+            </div>
             <div class="requestDetails">
-                <h3>Information about lister</h3>
+                {% if messages %}
+                {% for message in messages %}
+                {% if message.tags %}
+                <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+                    {%else%}
+                    <div class="alert alert-alert alert-dismissible fade show" role="alert">
+                        {% endif %}
+                        <strong>{{ message }}</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
 
-                <input type="text" placeholder="Name" value="{{listing.user.first_name}} {{listing.user.last_name}}"
-                       disabled>
-                <input type="text" placeholder="your Email" value="{{listing.user.email}}"  disabled>
-                <input type="text" placeholder="Phone" value="438-XXX-XXX"  disabled>
+                    <form action="{%url 'email'%}" method="POST">{%csrf_token%}
+
+                        {% if user.is_authenticated%}
+                        <input type="text" placeholder="Name" value="{{user.first_name}} {{user.last_name}}"
+                               name="name">
+                        <input type="text" placeholder="your Email" value="{{user.email}}" name="email">
+                        {%else%}
+                        <input type="text" placeholder="Name" name="name">
+                        <input type="text" placeholder="your Email" name="email">
+                        {%endif%}
+                        <!--
+                                        <input type="hidden" name="current_path" value="{{request.path}}">
+                        -->
+                        <input type="hidden" value="{{listing.user.email}}" name="listing_by">
+                        <input type="hidden" value="{{request.path}}" name="listing_url">
+                        <input type="text" placeholder="mobile (OPTIONAL)" name="phone">
+                        <textarea placeholder="ASK?" rows="6" name="description">Hi I am Interested</textarea>
+                        <input type="submit" value="SEND"></input>
+                    </form>
+
+
+                </div>
+
+
+                <div class="requestDetails">
+                    <h3>Information about lister</h3>
+
+                    <input type="text" placeholder="Name" value="{{listing.user.first_name}} {{listing.user.last_name}}"
+                           disabled>
+                    <input type="text" placeholder="your Email" value="{{listing.user.email}}" disabled>
+                    <input type="text" placeholder="Phone" value="438-XXX-XXX" disabled>
+                </div>
+
             </div>
+
 
         </div>
 
 
     </div>
-
-
-</div>
-</div>
 {%endblock%}
