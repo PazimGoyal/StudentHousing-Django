@@ -95,18 +95,18 @@ def register(request):
 
 def likes(request):
     id=int(request.GET['listing'])
-    print(1)
     listing = get_object_or_404(HouseListings, pk=id)
-    print(2)
     obj=LikedListings.objects.filter(user=request.user,advertisement=listing)
-    print(3)
-    print(obj)
-    print(4)
+
     if obj:
-        obj.delete()
-        print("DELETED")
+        obj=obj[0]
+        obj.likes=not obj.likes;
+        print(obj)
+        obj.save();
+
     else:
+        obj=LikedListings(user=request.user,advertisement=listing,likes=True)
         print("CREATED")
-        record=LikedListings(user=request.user,advertisement=listing)
-        record.save()
+        obj.save()
+
     return HttpResponse("")

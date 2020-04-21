@@ -14,3 +14,5 @@ class UserModel(models.Model):
 class LikedListings(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE)
     advertisement= models.ForeignKey(HouseListings, on_delete=models.CASCADE)
+    likes=models.BooleanField(default=False)
+    send_email=models.BooleanField(default=False)

@@ -1,15 +1,17 @@
 from decimal import Decimal
 
 from django.contrib import messages
-from django.core.mail import send_mail
 from django.core.paginator import Paginator
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 
 from listings.choices import space_type_c, city_c, order_c, building_type_c, furnished_c
+from users.models import LikedListings
+# from django.core.mail import send_mail
+from .Email import Email
 from .forms import SaveData
 from .models import HouseListings
-from users.models import LikedListings
+
 
 # Create your views here.
 def index(request):
@@ -92,13 +94,10 @@ def listings(request):
 
 
 def single_listing(request, request_id):
-    currentuserliked =False
     listin = get_object_or_404(HouseListings, pk=request_id)
-
-    if request.user.is_authenticated:
-        liked=LikedListings.objects.filter(user=request.user).filter(advertisement=listin)
-        if liked:
-            currentuserliked=True
+    liked = LikedListings.objects.filter(user=request.user).filter(advertisement=listin)
+    if liked:
+        liked=liked[0]
 
     abc = [listin.image1, listin.image2, listin.image3, listin.image4, listin.image5, listin.image6, listin.image7,
            listin.image8, listin.image9, listin.image10, listin.image11, listin.image12]
@@ -107,7 +106,7 @@ def single_listing(request, request_id):
     for i in abc:
         if i:
             img.append(i.url)
-    return render(request, 'single_listing.html', {'listing': listin, 'image': img,'likes':currentuserliked})
+    return render(request, 'single_listing.html', {'listing': listin, 'image': img, 'likes': liked})
 
 
 def add_item(request):
@@ -137,19 +136,37 @@ def mail_sending(request):
     if request.user.is_authenticated:
         if request.POST:
             data = request.POST
-            print("--------------------------------------------------------------")
-            print(data)
-            print("--------------------------------------------------------------")
-            description = """This mail is regarding your ad. on studentHousing.com 
-view your ad. here :""" + "http://10.0.0.81:8000" + data['listing_url'] + """   
-    
-""" + "Requested by:- " + request.user.first_name + " " + request.user.last_name + "\n" + data['phone'] + "\n" + data[
-'description'] + """
-    
-You can reply to user using website chatting service or directly reply at """ + request.user.email + """   
-Thankyou for using StudentHousing.com"""
-            send = send_mail('no-reply - student housing your ad. ', description, data['email'], [data['listing_by'], ])
+            #            description = """This mail is regarding your ad. on studentHousing.com
+            # view your ad. here :""" + "http://10.0.0.81:8000" + data['listing_url'] + """
+            #
+            # """ + "Requested by:- " + request.user.first_name + " " + request.user.last_name + "\n" + data['phone'] + "\n" + data[
+            # 'description'] + """
+            #
+            # You can reply to user using website chatting service or directly reply at """ + request.user.email + """
+            # Thankyou for using StudentHousing.com"""
+            #            send = send_mail('no-reply - student housing your ad. ', description, data['email'], [data['listing_by'], ])
+            name = request.user.first_name + " " + request.user.last_name
+            phone = data['phone']
+            descript = data['description']
+            url = data['listing_url']
+            email = request.user.email
+            listing_email = data['listing_by']
+            send = Email.send_mail(Email,name, descript, phone, email, listing_email, url)
+
+
             if send:
+                listin = get_object_or_404(HouseListings, pk=url.split("/").pop())
+                obj = LikedListings.objects.filter(user=request.user, advertisement=listin)
+                if obj:
+                    obj = obj[0]
+                    obj.send_email = True;
+                    print(obj.send_email)
+                    obj.save();
+
+                else:
+                    obj = LikedListings(user=request.user, advertisement=listin, send_email=True)
+                    print("CREATED")
+                    obj.save()
                 messages.success(request, "Mail Sent Successfully")
             else:
                 messages.error(request, "Fail to send mail")
@@ -184,9 +201,9 @@ def edit_listing(request, request_id):
         return redirect('dashboard')
 
 
-def delete_listing(request,request_id):
+def delete_listing(request, request_id):
     listing = get_object_or_404(HouseListings, pk=request_id)
-    if request.user.is_authenticated and (listing.user==request.user):
+    if request.user.is_authenticated and (listing.user == request.user):
         listing = get_object_or_404(HouseListings, pk=request_id)
         listing.delete()
         return redirect('dashboard')

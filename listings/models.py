@@ -1,19 +1,22 @@
+import sys
+from io import BytesIO
+
+from PIL import Image
 from django.contrib.auth.models import User
+from django.core.files import File
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.db import models
 from django.utils import timezone
-from io import BytesIO
-from PIL import Image
-import sys
-from django.core.files import File
 
 space = (('NOT AVAILABLE', 'NOT AVAILABLE'),
          ('Shared Bedroom', 'Shared Bedroom'), ('Private Bedroom', 'Private Bedroom'),
          ('Entire Place', 'Entire Apartment/House'))
-typeB = (('NOT AVAILABLE', 'NOT AVAILABLE'),('Apartment Building', 'Apartment Building'), ('House', 'House'), ('Basement', 'Basement'))
+typeB = (('NOT AVAILABLE', 'NOT AVAILABLE'), ('Apartment Building', 'Apartment Building'), ('House', 'House'),
+         ('Basement', 'Basement'))
 city = (('Montreal', 'Montreal'), ('Toronto', 'Toronto'))
 furnish = (('NOT AVAILABLE', 'NOT AVAILABLE'),
-('Not Furnished', 'NOT FURNISHED'), ('Fully Furnished', 'FULLY FURNISHED'), ('Semi Furnished', 'SEMI-FURNISHED'))
+           ('Not Furnished', 'NOT FURNISHED'), ('Fully Furnished', 'FULLY FURNISHED'),
+           ('Semi Furnished', 'SEMI-FURNISHED'))
 
 
 def compress(image):
@@ -22,6 +25,7 @@ def compress(image):
     im.save(im_io, 'JPEG', quality=60)
     new_image = File(im_io, name=image.name)
     return new_image
+
 
 class HouseListings(models.Model):
     title = models.CharField(max_length=200)
@@ -57,18 +61,26 @@ class HouseListings(models.Model):
     bathrooms = models.DecimalField(blank=True, decimal_places=1, max_digits=2, default=2)
 
     def save(self, *args, **kwargs):
-        #if not self.id:
         self.image1 = self.compressImage(self.image1)
+
+
         super(HouseListings, self).save(*args, **kwargs)
 
     def compressImage(self, uploadedImage):
         imageTemproary = Image.open(uploadedImage)
         outputIoStream = BytesIO()
-        imageTemproaryResized = imageTemproary.resize((1280, 720))
+        imageTemproaryResized = imageTemproary.resize((1000, 720))
         imageTemproaryResized.save(outputIoStream, format='JPEG', quality=60)
         outputIoStream.seek(0)
         uploadedImage = InMemoryUploadedFile(outputIoStream, 'ImageField', "%s.jpg" % uploadedImage.name.split('.')[0],
                                              'image/jpeg', sys.getsizeof(outputIoStream), None)
 
+        print(uploadedImage)
+
         return uploadedImage
 
+    def thumbImage(self,photo):
+        image = Image.open(photo.file)
+        resized_image = image.resize((200, 200), Image.ANTIALIAS)
+        resized_image.save(photo.file.path)
+        return photo
