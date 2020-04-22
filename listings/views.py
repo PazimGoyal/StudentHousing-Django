@@ -8,7 +8,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from listings.choices import space_type_c, city_c, order_c, building_type_c, furnished_c
 from users.models import LikedListings
 # from django.core.mail import send_mail
-from .Email import Email
+from .Email import send_mail
 from .forms import SaveData
 from .models import HouseListings
 
@@ -95,7 +95,9 @@ def listings(request):
 
 def single_listing(request, request_id):
     listin = get_object_or_404(HouseListings, pk=request_id)
-    liked = LikedListings.objects.filter(user=request.user).filter(advertisement=listin)
+    liked=[]
+    if request.user.is_authenticated:
+        liked = LikedListings.objects.filter(user=request.user).filter(advertisement=listin)
     if liked:
         liked=liked[0]
 
@@ -151,8 +153,7 @@ def mail_sending(request):
             url = data['listing_url']
             email = request.user.email
             listing_email = data['listing_by']
-            send = Email.send_mail(Email,name, descript, phone, email, listing_email, url)
-
+            send = send_mail(name, descript, phone, email, listing_email, url)
 
             if send:
                 listin = get_object_or_404(HouseListings, pk=url.split("/").pop())
@@ -170,7 +171,7 @@ def mail_sending(request):
                 messages.success(request, "Mail Sent Successfully")
             else:
                 messages.error(request, "Fail to send mail")
-            new_url = data['listing_url']
+        new_url = data['listing_url']
         return redirect(new_url)
     else:
         messages.info(request, "You need to Login First")

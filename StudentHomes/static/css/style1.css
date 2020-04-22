@@ -15,9 +15,11 @@ button:hover,
 label:focus,
 .btn:active,
 .btn.active {
+    /*
     outline: 0px !important;
     -webkit-appearance: none;
     box-shadow: none !important;
+    */
 }
 
 body {
@@ -263,7 +265,9 @@ body {
 
 .filter-options .filter-option1 {
     background-color: rgba(255, 255, 255, .7);
+    /*
     border-radius: 5px;
+    */
     padding: 40px;
 }
 
@@ -274,15 +278,18 @@ body {
     padding: 10px;
     background-color: rgba(255, 255, 255, .7);
     border: none;
+    /*
     border-radius: 10px;
+    */
 
 
 }
 
 .listing-filter-cb {
     width: 100%;
+    /*
     border-radius: 10px;
-
+    */
     padding: 10px;
     padding-left: 40px;
     background-color: rgba(255, 255, 255, .7);
@@ -319,6 +326,9 @@ body {
 padding: 25px;
 }
 
+.thumbnailImages .fa-angle-double-left,.fa-angle-double-right{
+    color: #b71921;
+}
 
 .thumbrow img{
     object-fit: cover;
@@ -329,9 +339,6 @@ padding: 25px;
 
 }
 
-.thumbrow img.active{
-    filter: drop-shadow(1px 1px 5px red);
-}
 
 .thumbrow img:hover{
     transform: scale(1.1);
@@ -367,6 +374,9 @@ padding: 25px;
     border-radius: 5px;
     cursor: pointer;
 }
+
+
+
 
 .discr {
     min-height: 300px;

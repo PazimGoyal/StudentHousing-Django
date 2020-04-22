@@ -9,19 +9,20 @@
     <div class="col-lg-7">
         <div class="title">
             <div>{{listing.title|title}}</div>
+
             <div>
-                <a href="#" id="likePost" data="{{listing.id}}">
+                <a data="{{listing.id}}" {%if not user.is_authenticated %} data-toggle="modal" data-target="#exampleModal"{%else%}id="likePost"{%endif%}>
                     {%if likes.likes == True%}
                     <i class="far fa-heart" id="notliked" style="display: none;"></i><i class="fas fa-heart" id="liked"
-                                                                                        style="display: block">
+                                                                                        style="display: block"></i>
                     {%else%}
                     <i class="far fa-heart" id="notliked" style="display: block;"></i><i class="fas fa-heart" id="liked"
-                                                                                         style="display: none">
+                                                                                         style="display: none"> </i>
 
                     {%endif%}
 
 
-                </i></a></div>
+                </a></div>
         </div>
 
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -64,13 +65,15 @@
         </div>
         {%if image|length > 1%}
 
+        <div class="thumbnailImages" style="display:flex; align-items: center; justify-content: space-between;">
 
-        <div style="display:flex; align-items: center;">
 
-
-            <a href="#thumbnailCarousel"  data-slide="prev">
+            {%if image|length > 4%}
+            <a href="#thumbnailCarousel" data-slide="prev">
                 <i class="fas fa-angle-double-left"></i>
             </a>
+
+            {%endif%}
             <div id="thumbnailCarousel" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
@@ -137,10 +140,14 @@
                     {%endif%}
                 </div>
             </div>
-            <a href="#thumbnailCarousel"  data-slide="next">
+            {%if image|length > 4%}
 
-            <i class="fas fa-angle-double-right"></i>
+            <a href="#thumbnailCarousel" data-slide="next">
+
+                <i class="fas fa-angle-double-right"></i>
             </a>
+            {%endif%}
+
         </div>
 
         {%endif%}
@@ -159,15 +166,15 @@
                 {{listing.created_date|naturaltime|naturalday}}
             </div>
             <div class="item"><i class="fas fa-home"></i> Place Type : {{listing.building_type}}</div>
-            <div class="item"><i class="fas fa-parking"></i> Parking : {{listing.garage}}</div>
+            <div class="item"><i class="fas fa-parking"></i> Parking / Garage : {{listing.garage}}</div>
             <div class="item"><i class="fas fa-home"></i> SPACE TYPE : {{listing.space_given}}</div>
-            <div class="item"><i class="fas fa-bath"></i> Size : {{listing.size}}</div>
-            <div class="item"><i class="fas fa-bath"></i> bathrooms : {{listing.bathrooms}}</div>
-            <div class="item"><i class="fas fa-dog"></i> animalsAllowed : {{listing.animalsAllowed}}</div>
-            <div class="item"><i class="fas fa-bolt"></i> electricityIncluded : {{listing.electricityIncluded}}
+            <div class="item"><i class="fas fa-bath"></i> Apartment Size : {{listing.size}}</div>
+            <div class="item"><i class="fas fa-bath"></i> Bathrooms : {{listing.bathrooms}}</div>
+            <div class="item"><i class="fas fa-dog"></i> Pets : {{listing.animalsAllowed}}</div>
+            <div class="item"><i class="fas fa-bolt"></i> Electricity : {{listing.electricityIncluded}}
             </div>
-            <div class="item"><i class="fas fa-wifi"></i> wifiIncluded : {{listing.wifiIncluded}}</div>
-            <div class="item"><i class="fas fa-couch"></i> furnished : {{listing.furnished}}</div>
+            <div class="item"><i class="fas fa-wifi"></i> Wifi : {{listing.wifiIncluded}}</div>
+            <div class="item"><i class="fas fa-couch"></i> Furnished : {{listing.furnished}}</div>
         </div>
         <div class="discr"><h3>Description</h3>
             <hr>
@@ -218,15 +225,12 @@
                     <input type="text" placeholder="mobile (OPTIONAL)" name="phone">
                     <textarea placeholder="ASK?" rows="6" name="description">Hi I am Interested</textarea>
 
-{%if likes.send_email%}
-                     <input type="submit" value="Mail Already Sent" disabled>
+                    {%if likes.send_email%}
+                    <input type="submit" value="Mail Already Sent" disabled>
 
                     {%else%}
                     <input type="submit" value="SEND">
-                        {%endif%}
-
-
-
+                    {%endif%}
 
 
                     </input>
@@ -239,14 +243,27 @@
 
 
             <div class="requestDetails">
-                <iframe width="100%" height="300" id="gmap_canvas" src="https://maps.google.com/maps?q={{listing.zipCode|lower}}&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                <iframe width="100%" height="300" id="gmap_canvas"
+                        src="https://maps.google.com/maps?q={{listing.zipCode|lower}}&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                        frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+
+            </div>
+
 
         </div>
 
 
     </div>
-
-
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        You Need to Login First
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>
-
-{%endblock%}
+    {%endblock%}
