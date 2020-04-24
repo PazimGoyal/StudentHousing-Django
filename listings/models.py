@@ -61,26 +61,80 @@ class HouseListings(models.Model):
     bathrooms = models.DecimalField(blank=True, decimal_places=1, max_digits=2, default=2)
 
     def save(self, *args, **kwargs):
-        self.image1 = self.compressImage(self.image1)
 
-
+        if self.image1:
+            self.image1 = self.compressImage(self.image1)
+        if self.image2:
+            self.image2 = self.compressImage(self.image2)
+        if self.image3:
+            self.image3 = self.compressImage(self.image3)
+        if self.image4:
+            self.image4 = self.compressImage(self.image4)
+        if self.image5:
+            self.image5 = self.compressImage(self.image5)
+        if self.image6:
+            self.image6 = self.compressImage(self.image6)
+        if self.image7:
+            self.image7 = self.compressImage(self.image7)
+        if self.image8:
+            self.image8 = self.compressImage(self.image8)
+        if self.image9:
+            self.image9 = self.compressImage(self.image9)
+        if self.image10:
+            self.image10 = self.compressImage(self.image10)
+        if self.image11:
+            self.image11 = self.compressImage(self.image11)
+        if self.image12:
+            self.image12 = self.compressImage(self.image12)
         super(HouseListings, self).save(*args, **kwargs)
+        if self.image1:
+            self.thumbImage(self.image1)
+        if self.image2:
+            self.thumbImage(self.image2)
+        if self.image3:
+            self.thumbImage(self.image3)
+        if self.image4:
+            self.thumbImage(self.image4)
+        if self.image5:
+            self.thumbImage(self.image5)
+        if self.image6:
+            self.thumbImage(self.image6)
+        if self.image7:
+            self.thumbImage(self.image7)
+        if self.image8:
+            self.thumbImage(self.image8)
+        if self.image9:
+            self.thumbImage(self.image9)
+        if self.image10:
+            self.thumbImage(self.image10)
+        if self.image11:
+            self.thumbImage(self.image11)
+        if self.image12:
+            self.thumbImage(self.image12)
+
 
     def compressImage(self, uploadedImage):
         imageTemproary = Image.open(uploadedImage)
+        (width, height) = imageTemproary.size
+        print("===========================================================================================")
+        print(width,height)
+        max=700
+        ratio=width/height
+        size=(width,height)
+        if height>max:
+            size=(int(max*ratio),max)
         outputIoStream = BytesIO()
-        imageTemproaryResized = imageTemproary.resize((1000, 720))
+        imageTemproaryResized = imageTemproary.resize(size)
         imageTemproaryResized.save(outputIoStream, format='JPEG', quality=60)
         outputIoStream.seek(0)
-        uploadedImage = InMemoryUploadedFile(outputIoStream, 'ImageField', "%s.jpg" % uploadedImage.name.split('.')[0],
-                                             'image/jpeg', sys.getsizeof(outputIoStream), None)
-
-        print(uploadedImage)
+        uploadedImage = InMemoryUploadedFile(outputIoStream, 'ImageField', str(self.title)+"_"+"%s.jpg" % uploadedImage.name.split('.')[0],
+                                                 'image/jpeg', sys.getsizeof(outputIoStream), None)
+        print("-------------------------------------------------------------------------------------")
+        print(size)
 
         return uploadedImage
 
-    def thumbImage(self,photo):
+    def thumbImage(self, photo):
         image = Image.open(photo.file)
-        resized_image = image.resize((200, 200), Image.ANTIALIAS)
-        resized_image.save(photo.file.path)
-        return photo
+        resized_image = image.resize((300, 200), Image.ANTIALIAS)
+        resized_image.save(photo.file.name.split('.')[0] + "-thumbnail.jpg", quality=60)

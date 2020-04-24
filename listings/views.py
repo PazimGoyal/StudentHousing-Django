@@ -206,6 +206,7 @@ def delete_listing(request, request_id):
     listing = get_object_or_404(HouseListings, pk=request_id)
     if request.user.is_authenticated and (listing.user == request.user):
         listing = get_object_or_404(HouseListings, pk=request_id)
+        
         listing.delete()
         return redirect('dashboard')
     else:

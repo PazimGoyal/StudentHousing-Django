@@ -2,7 +2,7 @@
     max-width: 100%;
     margin: 0px;
     padding: 0px;
-
+    -webkit-appearance: none;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Vollkorn:wght@600&display=swap');
@@ -15,9 +15,11 @@ button:hover,
 label:focus,
 .btn:active,
 .btn.active {
+    /*
     outline: 0px !important;
     -webkit-appearance: none;
     box-shadow: none !important;
+    */
 }
 
 body {
@@ -27,19 +29,18 @@ body {
 }
 
 
-.nav-link {
+.navbar .nav-link {
     transition: border 1s;
 }
 
-.nav-link:hover {
-    border-top: 1px double #fff;
+.navbar .nav-link:hover {
 }
 
-.nav-link:active {
+.navbar .nav-link:active {
     text-shadow: 2px 2px 2px #000;
 }
 
-.nav-link.active {
+.navbar .nav-link.active {
     border-bottom: 1px solid #fff;
 }
 
@@ -49,11 +50,12 @@ body {
 }
 
 .top-footer {
-    /*
-    padding-top: 40px;
-    display: flex;
-    justify-content: space-around;
-    */
+
+
+}
+
+.top-footer {
+    margin-top: 40px;
 }
 
 .top-footer .footer-logo {
@@ -77,10 +79,11 @@ body {
     padding: 10px;
 }
 
-.top-footer .footer-item{
+.top-footer .footer-item {
     padding-top: 40px;
     text-align: center;
 }
+
 .top-footer {
 }
 
@@ -117,12 +120,12 @@ body {
     padding: 100px 0px 100px 0px;
 }
 
-.shadow{
+.shadow {
     margin-top: -100px;
     position: absolute;
     height: 100%;
     width: 100%;
-    background-color: rgba(0,0,0,.7);
+    background-color: rgba(0, 0, 0, .7);
 }
 
 .homepage {
@@ -144,8 +147,10 @@ body {
 }
 
 .input-form-txt, .input-form-dpd {
+
     width: 100%;
     padding: 10px;
+    margin-top: 10px;
     background-color: rgba(255, 255, 255, .7);
     border: none;
 }
@@ -155,6 +160,7 @@ body {
     width: 100%;
     color: white;
     border: none;
+    margin-top: 10px;
 }
 
 .input-form-btn.adv {
@@ -166,8 +172,9 @@ body {
     width: 100%;
     padding: 10px;
     padding-left: 40px;
-    background-color: rgba(255, 255, 255, .5);
+    background-color: rgba(255, 255, 255, .7);
     border: none;
+    margin-top: 10px;
 }
 
 
@@ -258,7 +265,9 @@ body {
 
 .filter-options .filter-option1 {
     background-color: rgba(255, 255, 255, .7);
+    /*
     border-radius: 5px;
+    */
     padding: 40px;
 }
 
@@ -269,15 +278,18 @@ body {
     padding: 10px;
     background-color: rgba(255, 255, 255, .7);
     border: none;
+    /*
     border-radius: 10px;
+    */
 
 
 }
 
 .listing-filter-cb {
     width: 100%;
+    /*
     border-radius: 10px;
-
+    */
     padding: 10px;
     padding-left: 40px;
     background-color: rgba(255, 255, 255, .7);
@@ -291,20 +303,48 @@ body {
 .title {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin-top: 40px;
-    font-size: 35px;
+    font-size: 30px;
     background-color: #fff;
     margin-bottom: 10px;
     overflow: hidden;
     box-shadow: 0px 2px 2px 2px #4e555b;
-    padding: 10px;
+    border-radius: 10px;
+    padding: 10px 30px;
 
 }
 
 .single_images img {
 
+    object-fit: contain;
+    width: 100%;
     height: 100%;
 }
+
+.thumbrow{
+padding: 25px;
+}
+
+.thumbnailImages .fa-angle-double-left,.fa-angle-double-right{
+    color: #b71921;
+}
+
+.thumbrow img{
+    object-fit: cover;
+    width: 100%;
+    height: 100px;
+    filter: drop-shadow(2px 2px 5px #000);
+    transition: transform 1s;
+
+}
+
+
+.thumbrow img:hover{
+    transform: scale(.9);
+
+}
+
 
 .item {
     padding: 5px 10px;
@@ -335,6 +375,9 @@ body {
     cursor: pointer;
 }
 
+
+
+
 .discr {
     min-height: 300px;
     max-height: 1000px;
@@ -361,8 +404,6 @@ body {
     align-items: center;
 }
 
-.carousel {
-}
 
 .price_address {
     display: flex;
@@ -411,6 +452,18 @@ body {
     color: #b71921;
     text-align: center;
     font-size: larger;
+}
+
+
+.requestDetails.share {
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.requestDetails.share .fas {
+    text-decoration: none;
+    color: #b71921;
 }
 
 /*--------------------------------REGISTRATION AND LOGIN--------------------------------------------------USER*/
@@ -463,7 +516,7 @@ input {
     border-radius: 40px;
     padding: 10px;
     color: #fff;
-transition: background 2s;
+    transition: background 2s;
 
 }
 
@@ -473,56 +526,78 @@ transition: background 2s;
 }
 
 
-.headingIndex {
+.featuredListings {
     width: 100%;
-    text-align: center;
-    text-shadow: 1px 1px 1px #fff, 2px 2px 2px #000;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    text-shadow: 1px 1px 10px #fff, 2px 2px 10px #000;
+
 }
 
+.featuredListings button {
+    padding: 5px 20px;
+    color: #fff;
+    background: #b71921;
+    border-radius: 10px;
+}
+
+.featuredListings .txt {
+    font-size: 35px;
+}
 
 /*-------------DASHBOARD-------------------------------*/
 
 
-.left_pannel {
+.left_pannel .infoUser {
+
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-around;
     align-items: center;
-    padding: 20px;
+
 }
 
 
 .left_pannel .userPic {
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
     object-fit: cover;
     overflow: hidden;
     border: 1px solid #b71921;
     border-radius: 50%;
-
 }
 
-.center_pannel .card {
-
-    margin-top: 10px;
+.infoUser .userInfo div {
+    padding: 10px;
+    font-size: larger;
 }
 
-.center_pannel .button {
-    background-color: #b71921; /* Green */
-    border: none;
-    color: white;
-    padding: 5px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    box-shadow: 1px 0px 1px 1px #000000;
-    border-radius: 3px;
+
+.dashboard2 {
+    min-height: 70vh;
 }
 
-.center_pannel .button:active {
-    background-color: #fff;
+
+.dashboard2 .left-dash {
+    padding: 100px 10px;
+    margin-top: 100px;
+    box-shadow: 1px 1px 10px 1px #4e555b;
+    background: #fff;
+    height: 100%;
+}
+
+.dashboard2 .right-dash {
+}
+
+
+.left-dash .nav-pills .nav-link {
     color: #b71921;
-    box-shadow: 1px 1px 5px 1px #b71921;
+    font-size: 1.2em;
+}
+
+.left-dash .nav-pills .nav-link.active {
+    background-color: #b71921;
+    color: #fff;
 }
 
 
@@ -593,36 +668,6 @@ transition: background 2s;
     margin-top: 30px;
 }
 
-/*
-
-.img {
-    width: auto;
-    min-width: 240px;
-    min-height: 200px;
-    height: auto;
-    transition: background ease 1s;
-}
-
-.img1 {
-	background:url(../img/logo-2582748_960_720.png)  center no-repeat;
-background-size:contain;
-	shadow: 5px 5px 5px #000;
-
-}
-.img2 {
-	background: url(../img/unity2.png) center no-repeat;
-	shadow: 5px 5px 5px #000;
-	background-size:contain;
-}
-
-.img3 {
-	shadow: 5px 5px 5px #000;
-	background: url(../img/andr3.png) center no-repeat;
-	background-size:contain;
-
-}
-
- */
 
 .x {
     margin: 15px;
@@ -671,42 +716,24 @@ background-size:contain;
     font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
     font-size: x-large;
     border: 2px solid #b71921;
-    transition: transform 1s, background-color 1s,color 1s, text-shadow 1s, border 1s, border-radious 1s;
+    transition: transform 1s, background-color 1s, color 1s, text-shadow 1s, border 1s, border-radious 1s;
     padding: 10px;
     border-radius: 10px;
     transform: translateY(150px);
-    background-color: rgba(255,255,255,.7);
+    background-color: rgba(255, 255, 255, .7);
     cursor: pointer;
 }
 
 .x:hover .innertxt {
     transform: translateY(50px);
     transform: scale(1.5);
-    background-color: rgba(0,0,0,.3);
+    background-color: rgba(0, 0, 0, .3);
     color: #fff;
     text-shadow: 1px 1px 10px #000;
     border: none;
     border-radius: 0px;
 }
 
-
-
-
-/*.x:hover >.img1 {
-	background: url(../img/logo-2582748_960_7202.png)  center no-repeat;
-	background-size:contain;
-}
-.x:hover >.img2 {
-	background: url(../img/unity3.png) center no-repeat;
-	background-size:contain;
-}
-.x:hover >.img3{
-	background: url(../img/anscdr2.png) center no-repeat;
-
-	background-size:contain;
-
-}
-*/
 
 /*---------------------------------------------------page5,6-----------------------------------------------*/
 [data-toggle="collapse"][aria-expanded="true"] > .js-rotate-if-collapsed {
@@ -726,3 +753,14 @@ background-size:contain;
     background-color: #b71921;
     color: #fff;
 }
+
+#likePost {
+    text-decoration: none;
+    color: #b71921;
+}
+
+#liked {
+    display: none;
+}
+
+

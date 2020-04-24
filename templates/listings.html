@@ -150,10 +150,10 @@
 
         <div class="card">
             <div class="card-img ">
-                <img class="img-responsive" src="{{item.image1.url}}">
+                <img class="img-responsive" src="{{item.image1.url|cut:'.jpg'}}-thumbnail.jpg">
             </div>
             <div class="card-body">
-                <div class="card-title">
+            <div class="card-title">
                     <small><i class="fa fa-map-marker"></i><a href="#"> {{item.city}} /
                         {{item.zipCode|lower}}</a>
                     </small>
@@ -166,14 +166,11 @@
                         <div class="col info_item"><i class="fa fa-home"></i>
                             {{item.space_given|cut:"Bedroom"|truncatewords:1}}
                         </div>
-
                         <div class="col info_item"><i class="fa  fa-car"></i> {{item.garage|yesno:"Yes,No"}}</div>
                         <div class="col info_item"><i class="fa  fa-wifi "></i> {{item.wifiIncluded|yesno:"Yes,No"}}
                         </div>
-
                     </div>
                 </div>
-
             </div>
             <div class="card-footer">
                 <div class="d-flex justify-content-around">

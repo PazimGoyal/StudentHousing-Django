@@ -78,13 +78,14 @@
                 <div class="carousel-inner">
                     <div class="carousel-item active">
 
-
                         <div class="row column thumbrow">
                             {%for i in image|slice:":4"%}
                             {%if i%}
-                            <div class="col-3"><img src="{{i}}" class="" alt=""
+                            <div class="col-3 ">
+                                <img src="{{i|cut:'.jpg'}}-thumbnail.jpg" class="" alt=""
                                                     data-target="#carouselExampleIndicators"
                                                     data-slide-to="{{forloop.counter0}}">
+
                             </div>
                             {%endif%}
                             {%endfor%}
@@ -97,7 +98,7 @@
                         <div class="row column thumbrow">
                             {%for i in image|slice:"4:8"%}
                             {%if i%}
-                            <div class="col-3"><img src="{{i}}" class="" alt=""
+                            <div class="col-3"><img src="{{i|cut:'.jpg'}}-thumbnail.jpg" class="" alt=""
                                                     data-target="#carouselExampleIndicators"
                                                     data-slide-to="{{forloop.counter0|add:4}}">
                             </div>
@@ -114,7 +115,7 @@
                         <div class="row column thumbrow">
                             {%for i in image|slice:"8:"%}
                             {%if i%}
-                            <div class="col-3"><img src="{{i}}" class="" alt=""
+                            <div class="col-3"><img src="{{i|cut:'.jpg'}}-thumbnail.jpg" class="" alt=""
                                                     data-target="#carouselExampleIndicators"
                                                     data-slide-to="{{forloop.counter0|add:8}}">
                             </div>
