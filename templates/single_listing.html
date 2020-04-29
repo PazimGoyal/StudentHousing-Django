@@ -76,8 +76,8 @@
             {%endif%}
             <div id="thumbnailCarousel" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
 
+                    <div class="carousel-item active">
                         <div class="row column thumbrow">
                             {%for i in image|slice:":4"%}
                             {%if i%}
@@ -93,7 +93,23 @@
                     </div>
 
                     {%if image|length > 4%}
+                    <div class="carousel-item">
+                        <div class="row column thumbrow">
+                            {%for i in image|slice:"4:8"%}
+                            {%if i%}
+                            <div class="col-3 ">
+                                <img src="{{i|cut:'.jpg'}}-thumbnail.jpg" class="" alt=""
+                                                    data-target="#carouselExampleIndicators"
+                                                    data-slide-to="{{forloop.counter0|add:4}}">
 
+                            </div>
+                            {%endif%}
+                            {%endfor%}
+                        </div>
+                    </div>
+
+
+<!--
                     <div class="carousel-item ">
                         <div class="row column thumbrow">
                             {%for i in image|slice:"4:8"%}
@@ -106,6 +122,7 @@
                             {%endfor%}
                         </div>
                     </div>
+-->
                     {%endif%}
                     {%if image|length > 8%}
 
@@ -186,8 +203,8 @@
     <div class="col-lg-1"></div>
     <div class="col-lg-3 right-side-area">
         <div class="requestDetails share">
-            <a href=""> <i class="fab fa-facebook"></i></a>
-            <a href=""> <i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.META.HTTP_HOST }}/{{request.path}}" target="_blank"> <i class="fab fa-facebook"></i></a>
+            <a href="whatsapp://send?text={{ request.META.HTTP_HOST }}{{request.path}}" data-action="share/whatsapp/share" target="_blank"> <i class="fab fa-instagram"></i></a>
             <a href=""> <i class="fab fa-google-plus-g"></i></a>
             <a href=""> <i class="fab fa-twitter"></i></a>
 

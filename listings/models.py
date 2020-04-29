@@ -127,7 +127,7 @@ class HouseListings(models.Model):
         imageTemproaryResized = imageTemproary.resize(size)
         imageTemproaryResized.save(outputIoStream, format='JPEG', quality=60)
         outputIoStream.seek(0)
-        uploadedImage = InMemoryUploadedFile(outputIoStream, 'ImageField', str(self.title)+"_"+"%s.jpg" % uploadedImage.name.split('.')[0],
+        uploadedImage = InMemoryUploadedFile(outputIoStream, 'ImageField', str(self.title.replace(".","").replace("/",""))+"_"+"%s.jpg" % uploadedImage.name.replace(".","").split('.')[0],
                                                  'image/jpeg', sys.getsizeof(outputIoStream), None)
         print("-------------------------------------------------------------------------------------")
         print(size)

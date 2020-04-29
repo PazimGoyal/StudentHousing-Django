@@ -12,10 +12,6 @@
                    aria-controls="v-pills-profile" aria-selected="false"><i class="fas fa-list"></i> My Listings</a>
                 <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab"
                    aria-controls="v-pills-messages" aria-selected="false"><i class="fas fa-inbox"></i> My Messages</a>
-                <!--
-                                <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab"
-                                   aria-controls="v-pills-settings" aria-selected="false">Settings</a>
-                -->
             </div>
         </div>
         <div class="col-9 right-dash">
@@ -36,7 +32,8 @@
                             <div>Joined on : {{user.date_joined|naturaltime|naturalday}}</div>
 
                         </div>
-                        <div><a href="#"><i class="fas fa-edit"></i> </a></div>
+                        <div><a href="{%url 'password_change'%}"><i class="fas fa-edit"></i> </a><a href="{%url 'editProfile'%}"><i class="fas fa-edit"></i> </a></div>
+
                     </div>
 
                 </div>

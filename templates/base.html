@@ -46,10 +46,10 @@
                     <div class="dropdown-item-text">Welcome {{user.first_name|title}}{{user.last_name|title}}</div>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="/user/dashboard"><i class="fas fa-chart-pie"></i>Dash Board</a>
-                    <a class="dropdown-item" href="/user/logout"><i class="fas fa-sign-out-alt"></i>Log out</a>
+                    <a class="dropdown-item" href="{%url 'logout' %}"><i class="fas fa-sign-out-alt"></i>Log out</a>
                     {%else%}
                     <a class="dropdown-item" href="/user/register"><i class="fas fa-user-plus"></i>Sign Up</a>
-                    <a class="dropdown-item" href="/user/login"><i class="fas fa-sign-in-alt"></i>Log in</a>
+                    <a class="dropdown-item" href="{%url 'login' %}"><i class="fas fa-sign-in-alt"></i>Log in</a>
                     {%endif%}
                 </div>
             </li>

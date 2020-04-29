@@ -1,0 +1,20 @@
+{%extends 'base.html'%}
+{% load static %}
+{% block title %} | Edit Profile{% endblock%}
+{% block content %}
+<div style="margin-top: 70px"></div>
+
+<div class="container default_form">
+<form  method="post" action="{%url parsed_url%}" class="row">
+{% csrf_token %}
+<div class="col-6">    {{ form }}
+</div>
+<div class="col-6">    {{ form2 }}
+</div>
+
+    <input   type="submit"  class="btn default_button" value="Save">
+</form>
+</div>
+
+
+{%endblock%}
